@@ -2,6 +2,7 @@ from embedding_indexer import ChunkEmbedder
 from typing import List, Tuple, Dict, Any
 import json
 import re
+import numpy as np
 
 class QueryTester:
     def __init__(self):
@@ -14,24 +15,60 @@ class QueryTester:
         with open('semantic_chunks.json', 'r') as f:
             self.semantic_chunks = json.load(f)
 
+        # ML-specific skills mapping
+        self.ml_skill_categories = {
+            'core_ml': {
+                'machine learning', 'deep learning', 'neural networks', 'artificial intelligence',
+                'statistical modeling', 'reinforcement learning'
+            },
+            'frameworks': {
+                'tensorflow', 'pytorch', 'keras', 'scikit-learn', 'xgboost', 'lightgbm',
+                'fastai', 'mxnet', 'caffe'
+            },
+            'data_processing': {
+                'pandas', 'numpy', 'scipy', 'matplotlib', 'seaborn', 'plotly',
+                'jupyter', 'data visualization', 'feature engineering'
+            },
+            'specialized': {
+                'computer vision', 'natural language processing', 'nlp', 'speech recognition',
+                'recommendation systems', 'time series analysis', 'anomaly detection'
+            },
+            'ml_ops': {
+                'mlflow', 'kubeflow', 'airflow', 'ml pipelines', 'model deployment',
+                'model monitoring', 'feature store'
+            }
+        }
+
     def extract_keywords(self, query: str) -> Dict[str, List[str]]:
-        """Extract important keywords from the query"""
+        """Extract important keywords from the query with enhanced ML focus"""
         keywords = {
             'languages': [],
             'skills': [],
             'experience_level': []
         }
         
-        # Common programming languages
-        languages = ['python', 'java', 'javascript', 'typescript', 'c++', 'c#', 'ruby', 'go', 'rust', 'php']
-        # Common experience levels
+        # Common programming languages with ML focus
+        languages = ['python', 'r', 'julia', 'scala', 'java', 'c++', 
+                    'javascript', 'typescript', 'go', 'rust']
+        
+        # Experience levels
         experience_levels = ['junior', 'senior', 'expert', 'lead', 'experienced']
-        # Common skills
-        skills = ['machine learning', 'web development', 'backend', 'frontend', 'full stack', 
-                 'devops', 'cloud', 'aws', 'azure', 'docker', 'kubernetes', 'react', 'vue', 
-                 'angular', 'node.js', 'django', 'flask', 'spring']
+        
+        # ML-specific skills (consolidated from all categories)
+        ml_skills = set()
+        for category_skills in self.ml_skill_categories.values():
+            ml_skills.update(category_skills)
+        
+        # Additional general skills
+        general_skills = {
+            'web development', 'backend', 'frontend', 'full stack', 
+            'devops', 'cloud', 'aws', 'azure', 'docker', 'kubernetes',
+            'data science', 'data engineering', 'data analysis',
+            'big data', 'distributed systems', 'system design'
+        }
         
         query_lower = query.lower()
+        query_tokens = set(query_lower.split())
         
         # Find languages
         for lang in languages:
@@ -43,48 +80,98 @@ class QueryTester:
             if level in query_lower:
                 keywords['experience_level'].append(level)
         
-        # Find skills
-        for skill in skills:
+        # Find ML-specific skills (check for both exact and partial matches)
+        for skill in ml_skills:
+            if skill in query_lower or any(token in skill.split() for token in query_tokens):
+                keywords['skills'].append(skill)
+        
+        # Find general skills
+        for skill in general_skills:
             if skill in query_lower:
                 keywords['skills'].append(skill)
         
         return keywords
 
     def score_relevance(self, user_data: Dict[str, Any], keywords: Dict[str, List[str]]) -> float:
-        """Score how relevant a user is to the search keywords"""
-        score = 0.0
+        """Score how relevant a user is to search keywords with enhanced ML focus"""
+        # Initialize scoring components
+        language_score = 0.0
+        ml_score = 0.0
+        experience_score = 0.0
+        impact_score = 0.0
         
-        # Score based on languages
+        # ML-specific keywords that indicate expertise
+        ml_frameworks = {'tensorflow', 'pytorch', 'keras', 'scikit-learn', 'xgboost'}
+        ml_concepts = {'machine learning', 'deep learning', 'neural networks', 'ai', 'artificial intelligence'}
+        ml_domains = {'computer vision', 'nlp', 'natural language processing', 'reinforcement learning'}
+        data_skills = {'pandas', 'numpy', 'data science', 'data analysis', 'jupyter'}
+        
+        # Score language expertise (30% weight)
         if keywords['languages'] and 'languages' in user_data:
             user_langs = {k.lower(): v for k, v in user_data['languages'].items()}
             for lang in keywords['languages']:
-                if lang in user_langs:
-                    value = user_langs[lang]
+                if lang.lower() in user_langs:
+                    value = user_langs[lang.lower()]
                     if isinstance(value, dict):
                         count = value.get('count', 0)
-                        score += min(count / 5.0, 2.0)  # Cap at 2.0 points per language
+                        language_score += min(count / 5.0, 2.0)
                     elif isinstance(value, (int, float)):
-                        if value > 1:  # Count
-                            score += min(value / 5.0, 2.0)
-                        else:  # Percentage
-                            score += min(value * 2, 2.0)
+                        if value > 1:
+                            language_score += min(value / 5.0, 2.0)
+                        else:
+                            language_score += min(value * 2, 2.0)
         
-        # Score based on experience level
-        if keywords['experience_level'] and 'experience_years' in user_data:
+        # Score ML expertise (40% weight)
+        if 'skills' in user_data:
+            user_skills = {s.lower() for s in user_data['skills']}
+            
+            # Framework expertise
+            framework_matches = ml_frameworks.intersection(user_skills)
+            ml_score += len(framework_matches) * 1.5
+            
+            # Core ML concepts
+            concept_matches = ml_concepts.intersection(user_skills)
+            ml_score += len(concept_matches) * 2.0
+            
+            # Specialized domains
+            domain_matches = ml_domains.intersection(user_skills)
+            ml_score += len(domain_matches) * 1.8
+            
+            # Data processing skills
+            data_matches = data_skills.intersection(user_skills)
+            ml_score += len(data_matches) * 1.0
+        
+        # Score experience level (15% weight)
+        if 'experience_years' in user_data:
             years = user_data['experience_years']
-            if 'junior' in keywords['experience_level'] and years < 3:
-                score += 1.5
-            elif 'senior' in keywords['experience_level'] and years >= 5:
-                score += 1.5
-            elif ('expert' in keywords['experience_level'] or 'experienced' in keywords['experience_level']) and years >= 8:
-                score += 2.0
+            if years >= 8:  # Expert
+                experience_score = 3.0
+            elif years >= 5:  # Senior
+                experience_score = 2.0
+            elif years >= 3:  # Mid-level
+                experience_score = 1.0
         
-        # Score based on popularity if searching for top developers
-        if 'popularity_score' in user_data:
-            pop_score = user_data['popularity_score']
-            score += min(pop_score / 2.0, 1.0)  # Up to 1.0 point for popularity
+        # Score impact metrics (15% weight)
+        stars = user_data.get('total_stars', 0)
+        forks = user_data.get('total_forks', 0)
+        repos = user_data.get('public_repos', 0)
+        followers = user_data.get('followers', 0)
         
-        return score
+        # Use log scaling for better distribution
+        impact_score += np.log1p(stars) * 0.3
+        impact_score += np.log1p(forks) * 0.2
+        impact_score += min(repos / 20.0, 1.0)
+        impact_score += min(np.log1p(followers) * 0.1, 1.0)
+        
+        # Combine scores with weights
+        total_score = (
+            (language_score * 0.3) +
+            (ml_score * 0.4) +
+            (experience_score * 0.15) +
+            (impact_score * 0.15)
+        )
+        
+        return total_score
 
     def get_user_details(self, user_data: Dict[str, Any], keywords: Dict[str, List[str]] = None) -> str:
         """Format user details into a readable string"""
