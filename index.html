@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PersonaLens - Developer Search Pipeline</title>
+    <style>
+        :root {
+            --primary-color: #3f51b5;
+            --secondary-color: #f50057;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        .search-container {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .search-button {
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .search-button:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+        }
+
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-indicator.active {
+            display: block;
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .candidate-card {
+            background: var(--card-background);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .candidate-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .candidate-name {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+        }
+
+        .candidate-details {
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: #e3f2fd;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 16px;
+            font-size: 0.875rem;
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .metrics-container {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .metric-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .metric-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #121212;
+                --card-background: #1e1e1e;
+                --text-color: #ffffff;
+                --border-color: #333333;
+            }
+
+            .skill-tag {
+                background-color: rgba(63, 81, 181, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>PersonaLens Pipeline</h1>
+            <p>Find the perfect developer match using our advanced search pipeline</p>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for developers by skills, expertise, or project type...">
+            <button onclick="searchCandidates()" class="search-button">Search</button>
+        </div>
+
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="loading-text">Searching for developers...</div>
+        </div>
+
+        <div id="resultsContainer" class="results-container"></div>
+    </div>
+
+    <script>
+        // Mock data to simulate API response
+        const mockCandidates = [
+            {
+                name: "Jane Python",
+                username: "janepython",
+                experience: "Senior Data Scientist (8.5 years)",
+                match_score: 0.92,
+                skills: ["Python", "Machine Learning", "TensorFlow", "Data Analysis", "NLP"],
+                metrics: {
+                    codingStyle: 0.94,
+                    projectComplexity: 0.89,
+                    communityEngagement: 0.84
+                }
+            },
+            {
+                name: "Alex TypeScript",
+                username: "alexts",
+                experience: "Full Stack Developer (6 years)",
+                match_score: 0.88,
+                skills: ["TypeScript", "React", "Node.js", "GraphQL", "AWS"],
+                metrics: {
+                    codingStyle: 0.92,
+                    projectComplexity: 0.86,
+                    communityEngagement: 0.90
+                }
+            },
+            {
+                name: "Sam DataEngineer",
+                username: "samdata",
+                experience: "Data Engineer (5.5 years)",
+                match_score: 0.85,
+                skills: ["Python", "SQL", "Apache Spark", "Data Engineering", "ETL"],
+                metrics: {
+                    codingStyle: 0.88,
+                    projectComplexity: 0.92,
+                    communityEngagement: 0.82
+                }
+            }
+        ];
+
+        function searchCandidates() {
+            const searchInput = document.getElementById('searchInput');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const query = searchInput.value.trim();
+
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+
+            // Show loading indicator
+            loadingIndicator.classList.add('active');
+            resultsContainer.innerHTML = '';
+
+            // Simulate API delay
+            setTimeout(() => {
+                // Filter mock data based on search query
+                const results = mockCandidates.filter(candidate => 
+                    candidate.skills.some(skill => 
+                        skill.toLowerCase().includes(query.toLowerCase())
+                    ) ||
+                    candidate.name.toLowerCase().includes(query.toLowerCase()) ||
+                    candidate.experience.toLowerCase().includes(query.toLowerCase())
+                );
+
+                displayResults(results);
+                loadingIndicator.classList.remove('active');
+            }, 1000);
+        }
+
+        function displayResults(candidates) {
+            const resultsContainer = document.getElementById('resultsContainer');
+
+            if (candidates.length === 0) {
+                resultsContainer.innerHTML = '<div class="error-message">No developers found matching your criteria.</div>';
+                return;
+            }
+
+            const resultsHTML = candidates.map(candidate => `
+                <div class="candidate-card">
+                    <h3 class="candidate-name">${candidate.name}</h3>
+                    <div class="candidate-details">
+                        <div class="detail-item">
+                            <span class="detail-label">GitHub</span>
+                            <span>@${candidate.username}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Experience</span>
+                            <span>${candidate.experience}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Match Score</span>
+                            <span>${(candidate.match_score * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metrics-container">
+                        <div class="detail-item">
+                            <span class="detail-label">Coding Style</span>
+                            <div class="metric-bar">
+                                <div class="metric-bar-fill" style="width: ${candidate.metrics.codingStyle * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Project Complexity</span>
+                            <div class="metric-bar">
+                                <div class="metric-bar-fill" style="width: ${candidate.metrics.projectComplexity * 100}%"></div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Community Engagement</span>
+                            <div class="metric-bar">
+                                <div class="metric-bar-fill" style="width: ${candidate.metrics.communityEngagement * 100}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-list">
+                        ${candidate.skills.map(skill => `
+                            <span class="skill-tag">${skill}</span>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            resultsContainer.innerHTML = resultsHTML;
+        }
+
+        // Add event listener for Enter key in search input
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCandidates();
+            }
+        });
+    </script>
+</body>
+</html>
