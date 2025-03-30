@@ -6,13 +6,23 @@ This module provides a REST API interface for the Persona-Lens system.
 import json
 import os
 import traceback
-from flask import Flask, request, jsonify, render_template_string
+from flask import Flask, request, jsonify, render_template_string, Response, make_response
 from flask_cors import CORS
 from llm_prompt_connector import LLMPromptConnector
 from typing import Dict, Any, List, Optional
 
 app = Flask(__name__)
-CORS(app)
+
+# Configure CORS to allow requests from your frontend
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["http://localhost:5173", "http://127.0.0.1:5173"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True,
+        "max_age": 3600
+    }
+})
 
 # Initialize the LLM prompt connector
 connector = LLMPromptConnector()
@@ -189,6 +199,7 @@ def query_persona_lens():
         
         query = data['query']
         session_id = data.get('session_id', os.urandom(16).hex())
+        page = data.get('page', 1)  # Support pagination with default page 1
         
         # Get session history or initialize new one
         session_history = conversation_history.get(session_id, [])
@@ -196,7 +207,7 @@ def query_persona_lens():
         try:
             # Process the query through Persona-Lens
             app.logger.info(f"Processing query: {query}")
-            rag_output = connector.process_llm_query(query, session_history)
+            rag_output = connector.process_llm_query(query, session_history, page=page)
             app.logger.info(f"RAG Output: {rag_output}")
             
             if not rag_output or rag_output.strip() == "":
@@ -222,7 +233,8 @@ def query_persona_lens():
             response = {
                 "prompt": complete_prompt,
                 "rag_output": rag_output,
-                "session_id": session_id
+                "session_id": session_id,
+                "page": page
             }
             
             return jsonify(response)
@@ -262,35 +274,103 @@ def generate_fallback_response(query: str) -> str:
     langs = found_languages if found_languages else ["Python", "JavaScript"]
     skills_list = found_skills if found_skills else ["web development", "full stack"]
     
-    # Create a mock response
-    response = f"""Based on your query about "{query}", here are some recommended developers:
+    # Create a formatted response that matches the frontend parser expectations
+    response = f"""Here are the top developers matching your search for "{query}":
 
 1. **Alex Developer**
-   - GitHub: https://github.com/alexdev
-   - Languages: {", ".join(langs)}
-   - Experience: 7 years
-   - Expertise: {", ".join(skills_list)}
-   - Followers: 450
-   - Contributions: 1200+
-   - Match Score: 0.92
+   Username: alexdev
+   GitHub: https://github.com/alexdev
+   Languages: {", ".join(langs)}
+   Experience: 7.5 years (Senior)
+   Expertise: {", ".join(skills_list)}
+   Followers: 450
+   Contributions: 1200
+   Match Score: 0.92
+   
+   Key Strengths:
+   - Strong technical leadership in {langs[0]} projects
+   - Excellent code quality and documentation
+   - Active open source contributor with multiple popular repositories
+   
+   Areas for Improvement:
+   - Could expand knowledge in cloud infrastructure
+   - More test coverage would be beneficial
 
 2. **Sam Coder**
-   - GitHub: https://github.com/samcoder
-   - Languages: {", ".join(langs)}
-   - Experience: 5 years
-   - Expertise: {", ".join(skills_list)}, system design
-   - Followers: 320
-   - Contributions: 890+
-   - Match Score: 0.85
+   Username: samcoder
+   GitHub: https://github.com/samcoder
+   Languages: {", ".join(langs)}
+   Experience: 5.3 years (Mid-Senior)
+   Expertise: {", ".join(skills_list)}, system design
+   Followers: 320
+   Contributions: 890
+   Match Score: 0.85
+   
+   Key Strengths:
+   - Specialized in high-performance {langs[0]} applications
+   - Strong system design and architecture skills
+   - Consistent contribution pattern and code quality
+   
+   Areas for Improvement:
+   - Could improve documentation practices
+   - Limited experience with newer frameworks
 
 3. **Taylor Engineer**
-   - GitHub: https://github.com/tenginner
-   - Languages: {", ".join(langs)}
-   - Experience: 4 years
-   - Expertise: {", ".join(skills_list)}, DevOps
-   - Followers: 280
-   - Contributions: 760+
-   - Match Score: 0.81
+   Username: tenginner
+   GitHub: https://github.com/tenginner
+   Languages: {", ".join(langs)}
+   Experience: 4.2 years (Mid-level)
+   Expertise: {", ".join(skills_list)}, DevOps
+   Followers: 280
+   Contributions: 760
+   Match Score: 0.81
+   
+   Key Strengths:
+   - Full-stack development with {langs[0]} and {langs[1]}
+   - Strong DevOps integration expertise
+   - Regular contributor to popular open source projects
+   
+   Areas for Improvement:
+   - Could benefit from more complex project experience
+   - Limited leadership experience on larger teams
+
+4. **Jordan DevOps**
+   Username: jordandevops
+   GitHub: https://github.com/jordandevops
+   Languages: {", ".join(langs)}, Go
+   Experience: 6.1 years (Senior)
+   Expertise: {", ".join(skills_list)}, infrastructure, CI/CD
+   Followers: 375
+   Contributions: 950
+   Match Score: 0.78
+   
+   Key Strengths:
+   - Expert in containerization and orchestration
+   - Excellent infrastructure-as-code practices
+   - Consistent high-quality contributions
+   
+   Areas for Improvement:
+   - Could expand frontend development skills
+   - Less experience with machine learning projects
+
+5. **Riley Backend**
+   Username: rileybackend
+   GitHub: https://github.com/rileybackend
+   Languages: {", ".join(langs)}, SQL, Go
+   Experience: 5.8 years (Senior)
+   Expertise: {", ".join(skills_list)}, databases, API design
+   Followers: 290
+   Contributions: 820
+   Match Score: 0.76
+   
+   Key Strengths:
+   - Database optimization and performance tuning
+   - Scalable API architecture design
+   - Strong documentation practices
+   
+   Areas for Improvement:
+   - Limited frontend experience
+   - Could increase community engagement
 """
     
     return response
@@ -354,6 +434,18 @@ Provide a helpful analysis of this candidate, highlighting their strengths and k
     
     return jsonify(response)
 
+# Add CORS preflight handler for all routes
+@app.route('/api/<path:path>', methods=['OPTIONS'])
+def options_handler(path):
+    """Handle preflight OPTIONS requests for CORS"""
+    response = Response()
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 
+                        'Content-Type, Authorization, Accept, Origin, Referer, User-Agent, '
+                        'sec-ch-ua, sec-ch-ua-mobile, sec-ch-ua-platform')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    return response
+
 # Add a health check endpoint
 @app.route('/api/health', methods=['GET'])
 def health_check():
@@ -362,6 +454,26 @@ def health_check():
         "status": "ok",
         "service": "Persona-Lens API",
         "version": "1.0.0"
+    })
+
+@app.route('/api/cors-test', methods=['GET', 'POST', 'OPTIONS'])
+def cors_test():
+    """Special endpoint for testing CORS connectivity"""
+    # Handle OPTIONS preflight request
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'ok'})
+        # Add all CORS headers manually
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+        return response
+    
+    # For GET/POST requests
+    return jsonify({
+        'status': 'ok',
+        'message': 'CORS test successful',
+        'cors_working': True,
+        'method': request.method
     })
 
 if __name__ == '__main__':

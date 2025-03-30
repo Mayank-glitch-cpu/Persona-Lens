@@ -23,9 +23,34 @@ import {
   ListItemText,
   Divider,
   Card,
-  CardContent
+  CardContent,
+  IconButton,
+  Avatar,
+  Grid,
+  Tooltip,
+  InputAdornment,
+  CssBaseline,
+  ThemeProvider,
+  PaletteMode,
+  useMediaQuery,
+  Fade,
+  Zoom,
+  Badge,
+  Stack,
+  Skeleton
 } from '@mui/material'
-import { searchCandidates } from './services/api'
+import SearchIcon from '@mui/icons-material/Search';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import PersonIcon from '@mui/icons-material/Person';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import CodeIcon from '@mui/icons-material/Code';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import HistoryIcon from '@mui/icons-material/History';
+import { searchCandidates, checkApiHealth } from './services/api'
+import { getTheme } from './theme'
 import './App.css'
 
 // Mock data to use as fallback when API fails
@@ -179,27 +204,86 @@ function App() {
   const [rawOutput, setRawOutput] = useState<string>('')
   const [backendAvailable, setBackendAvailable] = useState<boolean>(false)
   const [useMockData, setUseMockData] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [apiHealthy, setApiHealthy] = useState<boolean>(false);
+  const [apiChecked, setApiChecked] = useState<boolean>(false);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const [showRawOutput, setShowRawOutput] = useState<boolean>(false);
+  const [activeProfileIndex, setActiveProfileIndex] = useState<number | null>(null);
+  const [themeMode, setThemeMode] = useState<PaletteMode>('light')
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-  // Add a backend availability check on component mount
+  // Initialize theme based on user's system preference
   useEffect(() => {
-    const checkBackendAvailability = async () => {
+    setThemeMode(prefersDarkMode ? 'dark' : 'light');
+  }, [prefersDarkMode]);
+
+  // Theme toggle handler
+  const toggleTheme = () => {
+    setThemeMode(prevMode => prevMode === 'light' ? 'dark' : 'light');
+  };
+
+  const theme = getTheme(themeMode);
+
+  // Check API health on component mount and when toggling mock data
+  useEffect(() => {
+    const checkHealth = async () => {
       try {
-        const response = await fetch('http://10.139.126.48:5000/api/health');
-        if (response.ok) {
-          console.log('Backend server is available');
-          setBackendAvailable(true);
-        } else {
-          console.error('Backend server returned an error response');
-          setBackendAvailable(false);
+        setLoading(true);
+        console.log("Checking API health on mount or when toggling mock data...");
+        const isHealthy = await checkApiHealth();
+        console.log('API health status:', isHealthy ? 'Healthy' : 'Unhealthy');
+        setApiHealthy(isHealthy);
+          
+        // Only set mock data mode automatically if backend is unhealthy and we're not already in mock mode
+        if (!isHealthy && !useMockData) {
+          console.log("API unhealthy, enabling mock data mode");
+          setUseMockData(true);
+          setError("Backend API is not accessible. Using demo data mode.");
         }
       } catch (error) {
-        console.error('Error checking backend availability:', error);
-        setBackendAvailable(false);
+        console.error('Error checking API health:', error);
+        setApiHealthy(false);
+        if (!useMockData) {
+          setUseMockData(true);
+          setError("Error checking API health. Using demo data mode.");
+        }
+      } finally {
+        setApiChecked(true);
+        setLoading(false);
       }
     };
-
-    checkBackendAvailability();
-  }, []);
+    
+    checkHealth();
+  }, [useMockData]); // Re-run when mockData toggle changes
+  
+  // When user toggles mock data mode, re-check API if switching to real API
+  useEffect(() => {
+    const verifyApiConnection = async () => {
+      if (!useMockData && !apiHealthy) {
+        try {
+          setIsLoading(true);
+          const healthy = await checkApiHealth();
+          setApiHealthy(healthy);
+          
+          if (!healthy) {
+            // If API is still not healthy, revert to mock data
+            console.warn('API still not accessible, reverting to mock data');
+            setUseMockData(true);
+          }
+        } catch (error) {
+          console.error('Error verifying API connection:', error);
+          setUseMockData(true);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
+    
+    if (apiChecked) {
+      verifyApiConnection();
+    }
+  }, [useMockData, apiHealthy, apiChecked]);
 
   const parseRagOutput = (ragOutput: string): PersonaData[] => {
     try {
@@ -348,42 +432,51 @@ function App() {
   };
 
   const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
+    e.preventDefault();
+    if (!query.trim()) return;
+    
+    setLoading(true);
+    setError(null);
+    setActiveProfileIndex(null);
+    
+    // Add to search history if not a duplicate
+    if (!searchHistory.includes(query)) {
+      setSearchHistory([query, ...searchHistory.slice(0, 4)]);
+    }
     
     try {
-      // First try to get real data from the API
+      // If not using mock data, try to use the real API
       if (!useMockData) {
         try {
-          // Call the actual backend API
-          console.log("Sending search request for query:", query);
+          console.log('Attempting to search with real API');
           const response = await searchCandidates(query, sessionId);
-          setSessionId(response.session_id);
           
-          console.log("API Response received:", response);
-          
-          // If the response is valid and has RAG output
           if (response && response.rag_output) {
+            console.log('Received valid response from API');
             const parsedResults = parseRagOutput(response.rag_output);
             setResults(parsedResults);
+            setRawOutput(response.rag_output);
+            setSessionId(response.session_id);
             
             if (parsedResults.length === 0) {
-              setError("No developers matching your query were found. Please try different search terms.");
+              setError('No developers matching your query were found. Please try different search terms.');
+            } else if (response.is_fallback) {
+              setError('Using backend fallback data. The search engine returned approximate results.');
             }
             
-            // Done processing successfully
             setLoading(false);
             return;
           }
-        } catch (apiError) {
-          console.error("API error, falling back to mock data:", apiError);
-          // Will continue to mock data below
+        } catch (apiError: any) {
+          console.error('API search error:', apiError);
+          setError(`API connection error: ${apiError.message}. Using demo data instead.`);
+          // Will continue to use mock data as fallback
+          setApiHealthy(false);
         }
       }
       
-      // Fallback to mock data if API failed or mock data was requested
-      console.log("Using mock data as fallback");
+      // If we get here, either useMockData is true or the API request failed
+      console.log('Using mock data for search results');
       
       // Simple filtering logic for mock data
       const searchTerms = query.toLowerCase().split(' ').filter(Boolean);
@@ -406,252 +499,681 @@ function App() {
       setError("Using demo data: The backend API is not available or returned an error");
       
     } catch (err: any) {
-      console.error("Error in search process:", err);
+      console.error('Search process error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred while searching');
       setResults([]);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const toggleMockData = () => {
-    setUseMockData(!useMockData);
-  }
+  const toggleMockData = async () => {
+    if (useMockData) {
+      // Switching to real API - check health first
+      try {
+        setIsLoading(true);
+        const healthy = await checkApiHealth();
+        setApiHealthy(healthy);
+        
+        if (healthy) {
+          setUseMockData(false);
+          console.log('Switched to real API mode');
+        } else {
+          console.warn('Cannot switch to real API - backend not accessible');
+          setError('Cannot connect to backend API. Still using demo data.');
+        }
+      } catch (error) {
+        console.error('Error checking API when toggling mode:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      // Switching to mock data - simple toggle
+      setUseMockData(true);
+      console.log('Switched to mock data mode');
+    }
+  };
 
   const resetResults = () => {
     setResults([]);
     setQuery('');
     setRawOutput('');
+    setActiveProfileIndex(null);
   }
+  
+  const handleHistoryItemClick = (historyItem: string) => {
+    setQuery(historyItem);
+  }
+  
+  const handleProfileSelect = (index: number) => {
+    setActiveProfileIndex(index);
+    setTabValue(0); // Reset to overview tab when selecting a new profile
+  };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Paper elevation={0} sx={{ p: 3, mb: 4, bgcolor: 'transparent' }}>
-        <Typography variant="h3" component="h1" gutterBottom>
-          Persona-Lens
-        </Typography>
-        <Typography variant="h6" color="text.secondary" gutterBottom>
-          AI-Powered GitHub Developer Profile Analysis
-        </Typography>
-        
-        <Box component="form" onSubmit={handleSearch} sx={{ mt: 4, display: 'flex', gap: 2 }}>
-          <TextField
-            fullWidth
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Enter search query (e.g., 'experienced Python developer with ML background')"
-            variant="outlined"
-            sx={{ bgcolor: 'background.paper' }}
-          />
-          <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary"
-            disabled={loading}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container maxWidth="lg" sx={{ pt: 2, pb: 4 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Paper 
+            elevation={3} 
+            sx={{ 
+              mb: 3, 
+              p: 2, 
+              borderRadius: 2,
+              background: themeMode === 'dark' ? 
+                'linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%)' : 
+                'linear-gradient(135deg, #f2f6fb 0%, #ffffff 100%)',
+              transition: 'background 0.3s ease-in-out'
+            }}
           >
-            Search
-          </Button>
-          {results.length > 0 && (
-            <Button 
-              variant="outlined" 
-              color="secondary"
-              onClick={resetResults}
-            >
-              Clear
-            </Button>
-          )}
-        </Box>
-
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-          <Button 
-            variant="outlined" 
-            size="small" 
-            color={useMockData ? "success" : "info"}
-            onClick={toggleMockData}
-            sx={{ mb: 2 }}
-          >
-            {useMockData ? "Using Demo Data" : "Use Real API"}
-          </Button>
-          {!backendAvailable && (
-            <Alert 
-              severity="warning" 
-              sx={{ ml: 2, flex: 1 }}
-            >
-              Backend connection issue detected. Using demo data instead.
-            </Alert>
-          )}
-        </Box>
-      </Paper>
-
-      {loading && <LinearProgress sx={{ mb: 4 }} />}
-      
-      {error && (
-        <Alert severity="error" sx={{ mb: 4 }}>
-          {error}
-        </Alert>
-      )}
-
-      {!loading && results.length > 0 && (
-        <>
-          <Typography variant="h5" gutterBottom>
-            {results.length} developer{results.length > 1 ? 's' : ''} found matching your criteria
-          </Typography>
-          
-          {results.map((result, index) => (
-            <Paper key={index} elevation={1} sx={{ mb: 4, overflow: 'hidden' }}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={tabValue} onChange={(_, newValue) => setTabValue(newValue)}>
-                  <Tab label="Overview" />
-                  <Tab label="Detailed Analysis" />
-                  <Tab label="Projects & Contributions" />
-                </Tabs>
-              </Box>
-
-              <TabPanel value={tabValue} index={0}>
-                <Box sx={{ mb: 3 }}>
-                  <Typography variant="h5" gutterBottom>{result.name}</Typography>
-                  <Typography variant="subtitle1" color="text.secondary" component="a" 
-                    href={result.githubUrl} target="_blank" rel="noopener noreferrer">
-                    {result.githubUrl}
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Zoom in={true} style={{ transitionDelay: '250ms' }}>
+                  <Avatar sx={{ mr: 2, bgcolor: theme.palette.primary.main }}>
+                    <PersonIcon />
+                  </Avatar>
+                </Zoom>
+                <Fade in={true} style={{ transitionDelay: '500ms' }}>
+                  <Typography variant="h4" component="h1" sx={{ fontWeight: 700, letterSpacing: '-0.5px' }}>
+                    Persona<Box component="span" sx={{ color: theme.palette.primary.main }}>Lens</Box>
                   </Typography>
-                </Box>
+                </Fade>
+              </Box>
+              <Box>
+                <Tooltip title={`Switch to ${themeMode === 'light' ? 'dark' : 'light'} mode`}>
+                  <IconButton onClick={toggleTheme} color="primary" sx={{ ml: 1 }}>
+                    {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={apiHealthy ? 'Connected to backend' : 'Using demo data'}>
+                  <Badge
+                    variant="dot"
+                    color={apiHealthy ? 'success' : 'error'}
+                    sx={{ ml: 1 }}
+                  >
+                    <IconButton 
+                      color="primary"
+                      onClick={() => setUseMockData(!useMockData && apiHealthy)}
+                      disabled={!apiHealthy && !useMockData}
+                    >
+                      <CodeIcon />
+                    </IconButton>
+                  </Badge>
+                </Tooltip>
+              </Box>
+            </Box>
 
-                <TableContainer>
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell component="th" scope="row" width="200">Match Score</TableCell>
-                        <TableCell>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                            <LinearProgress 
-                              variant="determinate" 
-                              value={result.score * 100} 
-                              sx={{ flexGrow: 1 }}
-                            />
-                            <Typography variant="body2">
-                              {(result.score * 100).toFixed(1)}%
+            <Box component="form" onSubmit={handleSearch} sx={{ width: '100%' }}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Find developers by expertise, skills, or project type..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                sx={{ 
+                  borderRadius: 2,
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: 2,
+                  },
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderWidth: 2
+                  }
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button 
+                        variant="contained" 
+                        type="submit" 
+                        disabled={loading || !query.trim()}
+                        sx={{ 
+                          borderRadius: '8px', 
+                          px: 3,
+                          color: '#fff',
+                          boxShadow: 4,
+                          transition: 'transform 0.2s',
+                          '&:hover': {
+                            transform: 'translateY(-2px)',
+                            boxShadow: 6
+                          }
+                        }}
+                      >
+                        <SearchIcon sx={{ mr: 1 }} />
+                        Search
+                      </Button>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+
+            {searchHistory.length > 0 && (
+              <Box sx={{ mt: 2, display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                <Chip 
+                  icon={<HistoryIcon />} 
+                  label="Recent Searches:"
+                  variant="outlined"
+                  size="small"
+                />
+                {searchHistory.map((term, idx) => (
+                  <Chip
+                    key={idx}
+                    label={term}
+                    size="small"
+                    onClick={() => {
+                      setQuery(term);
+                      handleSearch(new Event('submit') as unknown as React.FormEvent);
+                    }}
+                    sx={{ 
+                      transition: 'all 0.2s',
+                      '&:hover': {
+                        backgroundColor: theme.palette.primary.main + '33',
+                        transform: 'translateY(-2px)'
+                      }
+                    }}
+                  />
+                ))}
+              </Box>
+            )}
+
+            {error && (
+              <Alert 
+                severity="warning" 
+                sx={{ mt: 2, borderRadius: 2, animation: 'fadeIn 0.5s' }}
+                onClose={() => setError(null)}
+              >
+                {error}
+              </Alert>
+            )}
+
+            {!apiChecked && (
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Checking API connection...
+                </Typography>
+                <LinearProgress sx={{ mt: 1, borderRadius: 1 }} />
+              </Box>
+            )}
+          </Paper>
+
+          {loading && (
+            <Box sx={{ mt: 2, mb: 4 }}>
+              <Skeleton variant="rectangular" height={60} sx={{ borderRadius: 2, mb: 2 }} />
+              <Grid container spacing={3}>
+                {[1, 2, 3].map((item) => (
+                  <Grid item xs={12} md={4} key={item}>
+                    <Skeleton variant="rectangular" height={240} sx={{ borderRadius: 2 }} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          )}
+
+          {/* Results Section */}
+          {!loading && results.length > 0 && (
+            <>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+                <Typography variant="h5">
+                  {results.length} developer{results.length > 1 ? 's' : ''} found
+                </Typography>
+                <Chip 
+                  label={`Query: "${query}"`} 
+                  variant="outlined" 
+                  onDelete={resetResults} 
+                  color="primary"
+                  sx={{ borderRadius: '16px' }}
+                />
+              </Box>
+              
+              {/* Two-column layout for larger screens */}
+              <Grid container spacing={3}>
+                {/* Developer list (sidebar) */}
+                <Grid item xs={12} md={4}>
+                  <Paper 
+                    elevation={1} 
+                    sx={{ 
+                      borderRadius: 2, 
+                      overflow: 'hidden',
+                      height: '100%',
+                      maxHeight: '600px',
+                      overflowY: 'auto'
+                    }}
+                  >
+                    <Typography 
+                      variant="subtitle1" 
+                      sx={{ p: 2, borderBottom: '1px solid #eee', fontWeight: 'medium' }}
+                    >
+                      Developer Results
+                    </Typography>
+                    <List sx={{ p: 0 }}>
+                      {results.map((result, index) => (
+                        <ListItem 
+                          key={index} 
+                          button 
+                          onClick={() => handleProfileSelect(index)}
+                          selected={activeProfileIndex === index}
+                          sx={{ 
+                            borderLeft: activeProfileIndex === index ? '4px solid #3f51b5' : '4px solid transparent',
+                            transition: 'all 0.2s ease',
+                            '&:hover': {
+                              backgroundColor: '#f5f5f5'
+                            }
+                          }}
+                        >
+                          <Box sx={{ display: 'flex', width: '100%', alignItems: 'center' }}>
+                            <Avatar 
+                              sx={{ 
+                                mr: 2, 
+                                bgcolor: `hsl(${(index * 55) % 360}, 70%, 50%)`,
+                                width: 40,
+                                height: 40
+                              }}
+                            >
+                              {result.name.charAt(0)}
+                            </Avatar>
+                            <Box sx={{ overflow: 'hidden' }}>
+                              <Typography 
+                                variant="body1" 
+                                sx={{ 
+                                  fontWeight: activeProfileIndex === index ? 'bold' : 'regular',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis'
+                                }}
+                              >
+                                {result.name}
+                              </Typography>
+                              <Typography 
+                                variant="body2" 
+                                color="text.secondary"
+                                sx={{
+                                  fontSize: '0.8rem',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis'
+                                }}
+                              >
+                                {result.experience}
+                              </Typography>
+                            </Box>
+                            <Box 
+                              sx={{ 
+                                ml: 'auto', 
+                                display: 'flex', 
+                                alignItems: 'center',
+                                whiteSpace: 'nowrap'
+                              }}
+                            >
+                              <Tooltip title="Match Score">
+                                <Chip 
+                                  label={`${(result.score * 100).toFixed(0)}%`} 
+                                  size="small" 
+                                  color={result.score > 0.85 ? "success" : "primary"}
+                                  sx={{ fontWeight: 'bold' }}
+                                />
+                              </Tooltip>
+                            </Box>
+                          </Box>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Paper>
+                </Grid>
+                
+                {/* Profile detail */}
+                <Grid item xs={12} md={8}>
+                  {activeProfileIndex !== null ? (
+                    <Paper elevation={1} sx={{ borderRadius: 2, overflow: 'hidden' }}>
+                      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <Tabs 
+                          value={tabValue} 
+                          onChange={(_, newValue) => setTabValue(newValue)}
+                          sx={{
+                            '.MuiTab-root': {
+                              minWidth: '120px',
+                              py: 2
+                            }
+                          }}
+                        >
+                          <Tab label="Overview" />
+                          <Tab label="Detailed Analysis" />
+                          <Tab label="Projects & Contributions" />
+                        </Tabs>
+                      </Box>
+
+                      <TabPanel value={tabValue} index={0}>
+                        <Box sx={{ mb: 3, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { sm: 'center' }, gap: 2 }}>
+                          <Avatar 
+                            sx={{ 
+                              width: 80, 
+                              height: 80,
+                              bgcolor: `hsl(${(activeProfileIndex * 55) % 360}, 70%, 50%)`,
+                              fontSize: '2rem',
+                              fontWeight: 'bold'
+                            }}
+                          >
+                            {results[activeProfileIndex].name.charAt(0)}
+                          </Avatar>
+                          <Box>
+                            <Typography variant="h5" gutterBottom>{results[activeProfileIndex].name}</Typography>
+                            <Typography 
+                              variant="subtitle1" 
+                              color="text.secondary" 
+                              component="a" 
+                              href={results[activeProfileIndex].githubUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              sx={{ 
+                                textDecoration: 'none',
+                                '&:hover': { textDecoration: 'underline' }
+                              }}
+                            >
+                              @{results[activeProfileIndex].username}
                             </Typography>
                           </Box>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell component="th" scope="row">Experience</TableCell>
-                        <TableCell>{result.experience}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell component="th" scope="row">Expertise</TableCell>
-                        <TableCell>
-                          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                            {result.expertise.map((skill, i) => (
-                              <Chip key={i} label={skill} size="small" />
-                            ))}
+                          <Box sx={{ ml: 'auto', display: { xs: 'none', sm: 'block' } }}>
+                            <Button 
+                              variant="outlined" 
+                              color="primary"
+                              href={results[activeProfileIndex].githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              sx={{ 
+                                borderRadius: 2,
+                                textTransform: 'none'
+                              }}
+                            >
+                              View GitHub Profile
+                            </Button>
                           </Box>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell component="th" scope="row">GitHub Stats</TableCell>
-                        <TableCell>
-                          <Typography variant="body2">
-                            {result.contributions.toLocaleString()} contributions · {result.followers.toLocaleString()} followers
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </TabPanel>
+                        </Box>
 
-              <TabPanel value={tabValue} index={1}>
-                <Typography variant="h6" gutterBottom>Performance Metrics</Typography>
-                <TableContainer>
-                  <Table>
-                    <TableBody>
-                      {Object.entries(result.analysis).map(([key, value]) => (
-                        <TableRow key={key}>
-                          <TableCell component="th" scope="row" width="200">
-                            {key.replace(/([A-Z])/g, ' $1').trim()}
-                          </TableCell>
-                          <TableCell>
-                            <Rating value={value} precision={0.1} readOnly />
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+                        <TableContainer sx={{ mb: 3 }}>
+                          <Table>
+                            <TableBody>
+                              <TableRow>
+                                <TableCell component="th" scope="row" width="200">Match Score</TableCell>
+                                <TableCell>
+                                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                    <LinearProgress 
+                                      variant="determinate" 
+                                      value={results[activeProfileIndex].score * 100} 
+                                      sx={{ 
+                                        flexGrow: 1,
+                                        height: 10,
+                                        borderRadius: 5,
+                                        backgroundColor: '#e0e0e0',
+                                        '& .MuiLinearProgress-bar': {
+                                          borderRadius: 5,
+                                          background: `linear-gradient(90deg, #2196f3 0%, #3f51b5 100%)`
+                                        }
+                                      }}
+                                    />
+                                    <Typography variant="body2" fontWeight="bold">
+                                      {(results[activeProfileIndex].score * 100).toFixed(1)}%
+                                    </Typography>
+                                  </Box>
+                                </TableCell>
+                              </TableRow>
+                              <TableRow>
+                                <TableCell component="th" scope="row">Experience</TableCell>
+                                <TableCell>{results[activeProfileIndex].experience}</TableCell>
+                              </TableRow>
+                              <TableRow>
+                                <TableCell component="th" scope="row">Expertise</TableCell>
+                                <TableCell>
+                                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                                    {results[activeProfileIndex].expertise.map((skill, i) => (
+                                      <Chip 
+                                        key={i} 
+                                        label={skill} 
+                                        size="small" 
+                                        sx={{ borderRadius: '16px' }}
+                                      />
+                                    ))}
+                                  </Box>
+                                </TableCell>
+                              </TableRow>
+                              <TableRow>
+                                <TableCell component="th" scope="row">GitHub Stats</TableCell>
+                                <TableCell>
+                                  <Typography variant="body2">
+                                    {results[activeProfileIndex].contributions.toLocaleString()} contributions · {results[activeProfileIndex].followers.toLocaleString()} followers
+                                  </Typography>
+                                </TableCell>
+                              </TableRow>
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                        
+                        {/* Strengths & Areas for Improvement (mini-summary) */}
+                        <Grid container spacing={2}>
+                          <Grid item xs={12} sm={6}>
+                            <Typography variant="subtitle2" gutterBottom>Key Strengths</Typography>
+                            <List dense>
+                              {results[activeProfileIndex].strengths.slice(0, 2).map((strength, i) => (
+                                <ListItem key={i} sx={{ py: 0.5 }}>
+                                  <ListItemText primary={strength} />
+                                </ListItem>
+                              ))}
+                            </List>
+                          </Grid>
+                          <Grid item xs={12} sm={6}>
+                            <Typography variant="subtitle2" gutterBottom>Areas for Improvement</Typography>
+                            <List dense>
+                              {results[activeProfileIndex].areasOfImprovement.slice(0, 2).map((area, i) => (
+                                <ListItem key={i} sx={{ py: 0.5 }}>
+                                  <ListItemText primary={area} />
+                                </ListItem>
+                              ))}
+                            </List>
+                          </Grid>
+                        </Grid>
+                      </TabPanel>
 
-                <Box sx={{ mt: 4 }}>
-                  <Typography variant="h6" gutterBottom>Key Strengths</Typography>
-                  {result.strengths.map((strength, i) => (
-                    <Alert key={i} severity="success" sx={{ mb: 1 }}>
-                      {strength}
-                    </Alert>
-                  ))}
+                      <TabPanel value={tabValue} index={1}>
+                        <Typography variant="h6" gutterBottom>Performance Metrics</Typography>
+                        <Box sx={{ mb: 4, px: 2 }}>
+                          {Object.entries(results[activeProfileIndex].analysis).map(([key, value]) => (
+                            <Box key={key} sx={{ mb: 2 }}>
+                              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                                <Typography variant="body2">
+                                  {key.replace(/([A-Z])/g, ' $1').trim()}
+                                </Typography>
+                                <Typography variant="body2" fontWeight="medium">
+                                  {value.toFixed(1)}/5.0
+                                </Typography>
+                              </Box>
+                              <LinearProgress 
+                                variant="determinate" 
+                                value={(value / 5) * 100}
+                                sx={{ 
+                                  height: 8, 
+                                  borderRadius: 4,
+                                  backgroundColor: '#e0e0e0',
+                                  '& .MuiLinearProgress-bar': {
+                                    borderRadius: 4,
+                                    background: key === 'codingStyle' ? 'linear-gradient(90deg, #42a5f5 0%, #1976d2 100%)' :
+                                              key === 'projectComplexity' ? 'linear-gradient(90deg, #7cb342 0%, #558b2f 100%)' :
+                                              key === 'communityEngagement' ? 'linear-gradient(90deg, #ffb74d 0%, #f57c00 100%)' :
+                                              'linear-gradient(90deg, #ba68c8 0%, #7b1fa2 100%)'
+                                  }
+                                }}
+                              />
+                            </Box>
+                          ))}
+                        </Box>
+
+                        <Box sx={{ mt: 4 }}>
+                          <Typography variant="h6" gutterBottom>Key Strengths</Typography>
+                          {results[activeProfileIndex].strengths.map((strength, i) => (
+                            <Alert 
+                              key={i} 
+                              severity="success" 
+                              sx={{ 
+                                mb: 1,
+                                borderRadius: '8px',
+                                '.MuiAlert-icon': {
+                                  alignItems: 'center'
+                                }
+                              }}
+                            >
+                              {strength}
+                            </Alert>
+                          ))}
+                        </Box>
+
+                        <Box sx={{ mt: 4 }}>
+                          <Typography variant="h6" gutterBottom>Areas for Improvement</Typography>
+                          {results[activeProfileIndex].areasOfImprovement.map((area, i) => (
+                            <Alert 
+                              key={i} 
+                              severity="info" 
+                              sx={{ 
+                                mb: 1,
+                                borderRadius: '8px'
+                              }}
+                            >
+                              {area}
+                            </Alert>
+                          ))}
+                        </Box>
+                      </TabPanel>
+
+                      <TabPanel value={tabValue} index={2}>
+                        <Typography variant="h6" gutterBottom>Recent Projects</Typography>
+                        <Grid container spacing={2}>
+                          {results[activeProfileIndex].recentProjects.map((project, i) => (
+                            <Grid item xs={12} sm={6} key={i}>
+                              <Card 
+                                elevation={0} 
+                                sx={{ 
+                                  border: '1px solid #eee',
+                                  height: '100%',
+                                  borderRadius: 2
+                                }}
+                              >
+                                <CardContent>
+                                  <Typography variant="h6" gutterBottom>{project.name}</Typography>
+                                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <Chip 
+                                      label={project.language} 
+                                      size="small" 
+                                      sx={{ borderRadius: '16px' }}
+                                    />
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                      <Typography variant="body2">★</Typography>
+                                      <Typography variant="body2" fontWeight="medium">
+                                        {project.stars.toLocaleString()}
+                                      </Typography>
+                                    </Box>
+                                  </Box>
+                                </CardContent>
+                              </Card>
+                            </Grid>
+                          ))}
+                        </Grid>
+                      </TabPanel>
+                    </Paper>
+                  ) : (
+                    <Box 
+                      sx={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        height: '100%',
+                        minHeight: '300px',
+                        bgcolor: '#f9f9f9',
+                        borderRadius: 2,
+                        p: 4
+                      }}
+                    >
+                      <Typography variant="h6" gutterBottom>Select a Developer Profile</Typography>
+                      <Typography variant="body2" color="text.secondary" align="center">
+                        Click on a developer from the list to view their detailed profile information.
+                      </Typography>
+                    </Box>
+                  )}
+                </Grid>
+              </Grid>
+            </>
+          )}
+
+          {!loading && results.length === 0 && query && (
+            <Alert 
+              severity="info" 
+              sx={{ 
+                mb: 4, 
+                p: 3, 
+                borderRadius: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              }}
+            >
+              <Typography variant="h6" gutterBottom>No results found</Typography>
+              <Typography variant="body2" sx={{ mb: 2 }}>
+                Try refining your search or using different terms to find developers.
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
+                <Chip 
+                  label="Python developers" 
+                  size="small" 
+                  clickable
+                  onClick={() => setQuery("Python developers")}
+                />
+                <Chip 
+                  label="JavaScript experts" 
+                  size="small" 
+                  clickable
+                  onClick={() => setQuery("JavaScript experts")}
+                />
+                <Chip 
+                  label="Data engineers" 
+                  size="small" 
+                  clickable
+                  onClick={() => setQuery("Data engineers")}
+                />
+              </Box>
+            </Alert>
+          )}
+          
+          {/* Raw output toggle */}
+          {rawOutput && (
+            <Card sx={{ mt: 4, p: 2, borderRadius: 2 }}>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                  <Typography variant="h6">API Raw Response:</Typography>
+                  <Button 
+                    size="small" 
+                    onClick={() => setShowRawOutput(!showRawOutput)}
+                    variant="outlined"
+                  >
+                    {showRawOutput ? 'Hide Details' : 'Show Details'}
+                  </Button>
                 </Box>
-
-                <Box sx={{ mt: 4 }}>
-                  <Typography variant="h6" gutterBottom>Areas for Improvement</Typography>
-                  {result.areasOfImprovement.map((area, i) => (
-                    <Alert key={i} severity="info" sx={{ mb: 1 }}>
-                      {area}
-                    </Alert>
-                  ))}
-                </Box>
-              </TabPanel>
-
-              <TabPanel value={tabValue} index={2}>
-                <Typography variant="h6" gutterBottom>Recent Projects</Typography>
-                <TableContainer>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Project Name</TableCell>
-                        <TableCell>Language</TableCell>
-                        <TableCell align="right">Stars</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {result.recentProjects.map((project, i) => (
-                        <TableRow key={i}>
-                          <TableCell>{project.name}</TableCell>
-                          <TableCell>
-                            <Chip label={project.language} size="small" />
-                          </TableCell>
-                          <TableCell align="right">{project.stars}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </TabPanel>
-            </Paper>
-          ))}
-        </>
-      )}
-
-      {!loading && results.length === 0 && query && (
-        <Alert severity="info">No results found. Try refining your search.</Alert>
-      )}
-      
-      {/* Raw output for debugging */}
-      {rawOutput && (
-        <Card sx={{ mt: 4, p: 2 }}>
-          <CardContent>
-            <Typography variant="h6" gutterBottom>Raw API Response:</Typography>
-            <Box component="pre" sx={{ 
-              whiteSpace: 'pre-wrap', 
-              overflow: 'auto',
-              bgcolor: '#f5f5f5',
-              p: 2,
-              borderRadius: 1,
-              maxHeight: '300px'
-            }}>
-              {rawOutput}
-            </Box>
-          </CardContent>
-        </Card>
-      )}
-    </Container>
+                
+                {showRawOutput && (
+                  <Box component="pre" sx={{ 
+                    whiteSpace: 'pre-wrap', 
+                    overflow: 'auto',
+                    bgcolor: '#f5f5f5',
+                    p: 2,
+                    borderRadius: 1,
+                    maxHeight: '300px',
+                    fontSize: '0.75rem'
+                  }}>
+                    {rawOutput}
+                  </Box>
+                )}
+              </CardContent>
+            </Card>
+          )}
+        </Box>
+      </Container>
+    </ThemeProvider>
   )
 }
 

@@ -1,25 +1,160 @@
+/* Base styling */
+:root {
+  --primary-color: #3f51b5;
+  --primary-light: #7986cb;
+  --primary-dark: #303f9f;
+  --secondary-color: #f50057;
+  --background-light: #f5f7fa;
+  --text-primary: #2a2a2a;
+  --text-secondary: #6b7280;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.3s;
+}
+
 body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--background-light);
+  color: var(--text-primary);
 }
 
-#root {
-  margin: 0 auto;
+/* App Header */
+.app-header {
+  background: linear-gradient(145deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  border-radius: 12px;
+  transition: transform var(--transition-speed);
 }
 
-.MuiTableCell-root {
-  vertical-align: top;
+/* Search form enhancements */
+.search-box {
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  transition: all var(--transition-speed);
 }
 
-.MuiRating-root {
-  margin-top: 4px;
+.search-box:hover, 
+.search-box:focus-within {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
 
+.search-form .MuiOutlinedInput-root {
+  border-radius: 8px;
+}
+
+.action-button {
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  border-radius: 8px;
+}
+
+.action-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Result cards styling */
+.result-card {
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  transition: all var(--transition-speed);
+  overflow: hidden;
+}
+
+.result-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.developer-avatar {
+  background-color: var(--primary-color);
+  color: white;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.score-progress {
+  border-radius: 4px;
+  height: 8px !important;
+}
+
+.score-progress .MuiLinearProgress-bar {
+  border-radius: 4px;
+}
+
+/* Tabs styling */
+.MuiTabs-root {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.MuiTab-root {
+  transition: background-color var(--transition-speed);
+  text-transform: none;
+  min-height: 48px;
+}
+
+.MuiTab-root.Mui-selected {
+  background-color: rgba(63, 81, 181, 0.08);
+  font-weight: 600;
+}
+
+/* Chip styling */
 .MuiChip-root {
-  margin: 2px;
+  margin: 4px;
+  transition: all var(--transition-speed);
 }
 
-.MuiAlert-root {
-  margin-bottom: 8px;
+.MuiChip-root:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .app-header {
+    padding: 16px !important;
+  }
+  
+  .developer-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .MuiTab-root {
+    min-width: 100px;
+    padding: 6px 12px;
+  }
+  
+  .search-form .MuiButton-root {
+    margin-top: 8px;
+  }
+}
+
+/* Animation for loading state */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.MuiCircularProgress-root {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Tooltip enhancements */
+.MuiTooltip-tooltip {
+  background-color: rgba(33, 33, 33, 0.9);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+}
+
+/* Rating element styling */
+.MuiRating-root {
+  color: var(--primary-color);
 }

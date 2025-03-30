@@ -1,17 +1,16 @@
 import axios from 'axios';
 
-// Try both IP address and localhost to increase reliability
-const API_URLS = [
-  'http://10.139.126.48:5000/api',  // IP address (primary)
-  'http://localhost:5000/api'       // localhost (fallback)
-];
+// Using a more flexible URL configuration that works in various environments
+const API_BASE_URL = 'http://localhost:5000/api';
 
-let activeBaseUrl = API_URLS[0]; // Start with the first URL
+// Fallback to window.location.origin for deployments
+// const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:5000/api`;
 
 export interface PersonaResponse {
   prompt: string;
   rag_output: string;
   session_id: string;
+  is_fallback?: boolean;
 }
 
 export interface DetailedProfileResponse {
@@ -20,99 +19,115 @@ export interface DetailedProfileResponse {
   session_id: string;
 }
 
-// Create axios instance with proper configuration
+// Create a custom axios instance with proper configuration
 const apiClient = axios.create({
-  baseURL: activeBaseUrl,
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    'Accept': 'application/json'
   },
-  timeout: 20000, // 20 seconds timeout
+  timeout: 20000, // 20 second timeout
+  withCredentials: false // Important: disable credentials for CORS
 });
 
-// Function to try all available base URLs
-const tryAllBaseUrls = async (endpoint: string, data: any) => {
-  let lastError;
-  
-  for (const baseUrl of API_URLS) {
-    try {
-      console.log(`Attempting connection to: ${baseUrl}${endpoint}`);
-      const response = await axios({
-        method: 'post',
-        url: `${baseUrl}${endpoint}`,
-        data,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        timeout: 15000
-      });
+// Function to verify the API is accessible
+export const checkApiHealth = async (): Promise<boolean> => {
+  try {
+    console.log(`Testing API health at: ${API_BASE_URL}/health`);
+    
+    // Use native fetch to avoid any axios configuration issues
+    const response = await fetch(`${API_BASE_URL}/health`, { 
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      },
+      // These settings help avoid CORS and caching problems
+      mode: 'cors',
+      cache: 'no-cache',
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Health check response:', data);
       
-      // If successful, update the active base URL for future requests
-      activeBaseUrl = baseUrl;
-      apiClient.defaults.baseURL = baseUrl;
-      console.log(`Successfully connected to: ${baseUrl}`);
-      
-      return response.data;
-    } catch (err: any) {
-      console.warn(`Connection failed for ${baseUrl}: ${err.message}`);
-      lastError = err;
+      if (data && data.status === 'ok') {
+        console.log('API health check passed');
+        return true;
+      }
     }
+    
+    console.warn('API health check failed: Bad response');
+    return false;
+  } catch (error) {
+    console.error('API health check failed with error:', error);
+    return false;
   }
-  
-  // If we get here, all URLs failed
-  throw lastError || new Error('Failed to connect to any API endpoint');
 };
 
 export const searchCandidates = async (query: string, sessionId?: string): Promise<PersonaResponse> => {
   try {
-    console.log('Searching candidates with query:', query);
+    // First check if the API is healthy
+    const isHealthy = await checkApiHealth();
+    if (!isHealthy) {
+      throw new Error('API is not accessible');
+    }
     
-    // Try with all possible base URLs
-    const data = await tryAllBaseUrls('/persona-lens/query', {
-      query,
-      session_id: sessionId
+    console.log(`Sending search request to ${API_BASE_URL}/persona-lens/query`);
+    
+    // Use native fetch instead of axios for better CORS handling
+    const response = await fetch(`${API_BASE_URL}/persona-lens/query`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        query,
+        session_id: sessionId
+      }),
+      mode: 'cors',
+      cache: 'no-cache'
     });
     
+    if (!response.ok) {
+      throw new Error(`API request failed with status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log('Search response received:', data);
     return data;
   } catch (error: any) {
     console.error('Error searching candidates:', error);
     
-    // Detailed error logging to help debug network issues
-    if (error.response) {
-      console.error('Server responded with error:', {
-        status: error.response.status,
-        data: error.response.data
-      });
-      
-      // If we received a 500 error with specific error message, include it
-      if (error.response.status === 500 && error.response.data && error.response.data.error) {
-        throw new Error(`Server error: ${error.response.data.error}`);
-      }
-    } else if (error.request) {
-      console.error('No response received from server');
-      throw new Error('Network error: Unable to connect to the server. Please check if the backend is running.');
-    }
-    
-    throw new Error(error.message || 'Failed to search for candidates');
+    // More detailed error logging
+    throw new Error(`API connection failed: ${error.message || 'Unknown error'}`);
   }
 };
 
 export const getDetailedProfile = async (username: string, sessionId?: string): Promise<DetailedProfileResponse> => {
   try {
-    // Try with all possible base URLs
-    const data = await tryAllBaseUrls('/persona-lens/detailed-profile', {
-      username,
-      session_id: sessionId
+    const response = await fetch(`${API_BASE_URL}/persona-lens/detailed-profile`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        session_id: sessionId
+      }),
+      mode: 'cors',
+      cache: 'no-cache'
     });
     
+    if (!response.ok) {
+      throw new Error(`API request failed with status: ${response.status}`);
+    }
+    
+    const data = await response.json();
     return data;
   } catch (error: any) {
     console.error('Error fetching detailed profile:', error);
-    
-    // Include more details in the error if available
-    if (error.response && error.response.data && error.response.data.error) {
-      throw new Error(`Server error: ${error.response.data.error}`);
-    }
-    
-    throw new Error(error.message || 'Failed to fetch detailed profile');
+    throw new Error(`Failed to fetch profile: ${error.message || 'Unknown error'}`);
   }
 };
