@@ -1,0 +1,625 @@
+2025-03-26 17:59:59,488 - INFO - Loaded test queries: 3 categories
+2025-03-26 17:59:59,488 - DEBUG - Query categories: ['language_based', 'skill_based', 'popularity_based']
+2025-03-26 17:59:59,488 - INFO - Total number of queries across all categories: 150
+2025-03-26 17:59:59,488 - DEBUG - Category 'language_based' has 50 queries
+2025-03-26 17:59:59,488 - DEBUG - Sample query from 'language_based': {'id': 'lang_iDone', 'user_id': 'iDone', 'type': 'language_expertise', 'primary_language': 'Assembly', 'relevant_indices': [0, 42, 97, 120, 221, 230, 233, 243, 286, 335]}
+2025-03-26 17:59:59,488 - DEBUG - Category 'skill_based' has 50 queries
+2025-03-26 17:59:59,488 - DEBUG - Sample query from 'skill_based': {'id': 'skills_EbubeEvan_0', 'user_id': 'EbubeEvan', 'type': 'skill_based', 'query': 'developers skilled in Java, TypeScript, React', 'skills': ['Java', 'TypeScript', 'React', 'JavaScript', 'CSS'], 'relevant_indices': [11, 2850, 508, 4041, 4513, 4553, 4581, 5154, 5714, 9233]}
+2025-03-26 17:59:59,489 - DEBUG - Category 'popularity_based' has 50 queries
+2025-03-26 17:59:59,489 - DEBUG - Sample query from 'popularity_based': {'id': 'popularity_iDone_0', 'user_id': 'iDone', 'type': 'popularity_based', 'query': 'rising developers with high impact', 'popularity_score': 0.3679220085470085, 'popularity_level': 'rising', 'relevant_indices': [0, 4, 12, 15, 19, 20, 24, 25, 26, 28]}
+2025-03-26 18:00:04,216 - INFO - Use pytorch device_name: cpu
+2025-03-26 18:00:04,216 - INFO - Load pretrained SentenceTransformer: paraphrase-multilingual-mpnet-base-v2
+2025-03-26 18:00:04,218 - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2025-03-26 18:00:04,405 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/modules.json HTTP/1.1" 200 0
+2025-03-26 18:00:04,481 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/config_sentence_transformers.json HTTP/1.1" 200 0
+2025-03-26 18:00:04,569 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/README.md HTTP/1.1" 200 0
+2025-03-26 18:00:04,652 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/modules.json HTTP/1.1" 200 0
+2025-03-26 18:00:04,727 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/sentence_bert_config.json HTTP/1.1" 200 0
+2025-03-26 18:00:04,805 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/adapter_config.json HTTP/1.1" 404 0
+2025-03-26 18:00:04,882 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/config.json HTTP/1.1" 200 0
+2025-03-26 18:00:05,108 - DEBUG - https://huggingface.co:443 "HEAD /sentence-transformers/paraphrase-multilingual-mpnet-base-v2/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2025-03-26 18:00:05,794 - DEBUG - https://huggingface.co:443 "GET /api/models/sentence-transformers/paraphrase-multilingual-mpnet-base-v2/revision/main HTTP/1.1" 200 6277
+2025-03-26 18:00:05,891 - DEBUG - https://huggingface.co:443 "GET /api/models/sentence-transformers/paraphrase-multilingual-mpnet-base-v2 HTTP/1.1" 200 6277
+2025-03-26 18:00:06,034 - INFO - Starting evaluation of 50 queries
+2025-03-26 18:00:06,035 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,065 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,065 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,066 - DEBUG - Relevant indices: [0, 42, 97, 120, 221, 230, 233, 243, 286, 335]
+2025-03-26 18:00:06,068 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,092 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,092 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,092 - DEBUG - Relevant indices: [0, 1, 2, 9, 12, 15, 18, 28, 34, 37]
+2025-03-26 18:00:06,094 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,122 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,122 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,122 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,123 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,147 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,147 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,147 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,149 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,174 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,174 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,174 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,176 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,204 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,205 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,205 - DEBUG - Relevant indices: [2, 5, 18, 19, 21, 26, 27, 35, 41, 42]
+2025-03-26 18:00:06,206 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,233 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,233 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,233 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,235 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,261 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,261 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,261 - DEBUG - Relevant indices: [1, 2, 3, 4, 6, 7, 8, 9, 11, 13]
+2025-03-26 18:00:06,263 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,289 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,289 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,289 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,290 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,319 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,319 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,319 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,321 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,350 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,350 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,351 - DEBUG - Relevant indices: [0, 1, 6, 8, 10, 12, 14, 16, 20, 21]
+2025-03-26 18:00:06,352 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,380 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,380 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,380 - DEBUG - Relevant indices: [1, 3, 6, 8, 11, 13, 16, 17, 20, 21]
+2025-03-26 18:00:06,382 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,410 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,411 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,411 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,412 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,441 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,442 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,442 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,443 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,470 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,470 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,470 - DEBUG - Relevant indices: [0, 3, 6, 8, 12, 14, 17, 18, 19, 23]
+2025-03-26 18:00:06,472 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,498 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,498 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,498 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,500 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,527 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,527 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,528 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,529 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,557 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,557 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,557 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,558 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,591 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,591 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,591 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,593 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,616 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,617 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,617 - DEBUG - Relevant indices: [0, 1, 2, 12, 14, 16, 17, 19, 21, 22]
+2025-03-26 18:00:06,618 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,645 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,645 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,645 - DEBUG - Relevant indices: [1, 3, 6, 8, 11, 13, 16, 17, 20, 21]
+2025-03-26 18:00:06,647 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,674 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,674 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,674 - DEBUG - Relevant indices: [21, 1201, 1392, 1561, 1675, 1945, 2482, 2490, 2775, 2832]
+2025-03-26 18:00:06,676 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,705 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,705 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,705 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,707 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,732 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,732 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,732 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,734 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,760 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,761 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,761 - DEBUG - Relevant indices: [1, 3, 6, 8, 11, 13, 16, 17, 20, 21]
+2025-03-26 18:00:06,762 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,790 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,790 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,790 - DEBUG - Relevant indices: [0, 12, 14, 21, 24, 25, 32, 33, 42, 49]
+2025-03-26 18:00:06,792 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,822 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,822 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,822 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,824 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,850 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,850 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,850 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:06,852 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,878 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,878 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,878 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,880 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,908 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,908 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,908 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,909 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,938 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,938 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,938 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,940 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,966 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,966 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,966 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:06,967 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:06,994 - DEBUG - Got 10 search results
+2025-03-26 18:00:06,994 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:06,994 - DEBUG - Relevant indices: [0, 12, 14, 21, 24, 25, 32, 33, 42, 49]
+2025-03-26 18:00:06,996 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,022 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,022 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,022 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:07,023 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,050 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,050 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,050 - DEBUG - Relevant indices: [0, 1, 2, 9, 12, 15, 18, 28, 34, 37]
+2025-03-26 18:00:07,052 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,079 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,079 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,079 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:07,081 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,107 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,107 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,107 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:07,109 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,137 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,138 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,138 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:07,139 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,166 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,166 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,167 - DEBUG - Relevant indices: [1, 3, 6, 8, 11, 13, 16, 17, 20, 21]
+2025-03-26 18:00:07,168 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,197 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,197 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,197 - DEBUG - Relevant indices: [0, 1, 2, 3, 6, 9, 11, 12, 13, 14]
+2025-03-26 18:00:07,199 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,226 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,226 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,226 - DEBUG - Relevant indices: [0, 1, 6, 8, 10, 12, 14, 16, 20, 21]
+2025-03-26 18:00:07,228 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,257 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,257 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,257 - DEBUG - Relevant indices: [3, 12, 16, 17, 29, 31, 33, 34, 37, 41]
+2025-03-26 18:00:07,259 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,290 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,290 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,290 - DEBUG - Relevant indices: [2, 5, 18, 19, 21, 26, 27, 35, 41, 42]
+2025-03-26 18:00:07,291 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,317 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,317 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,317 - DEBUG - Relevant indices: [2, 15, 23, 24, 25, 31, 34, 41, 42, 43]
+2025-03-26 18:00:07,319 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,387 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,387 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,388 - DEBUG - Relevant indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 12]
+2025-03-26 18:00:07,389 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,415 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,415 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,415 - DEBUG - Relevant indices: [2, 5, 18, 19, 21, 26, 27, 35, 41, 42]
+2025-03-26 18:00:07,416 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,441 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,441 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,442 - DEBUG - Relevant indices: [2, 5, 18, 19, 21, 26, 27, 35, 41, 42]
+2025-03-26 18:00:07,443 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,472 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,472 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,472 - DEBUG - Relevant indices: [2, 15, 23, 24, 25, 31, 34, 41, 42, 43]
+2025-03-26 18:00:07,474 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,502 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,503 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,503 - DEBUG - Relevant indices: [0, 1, 6, 8, 10, 12, 14, 16, 20, 21]
+2025-03-26 18:00:07,505 - DEBUG - Processing query: ... (type: language_expertise)
+2025-03-26 18:00:07,530 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,530 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:07,530 - DEBUG - Relevant indices: [2, 3, 9, 13, 14, 18, 22, 23, 24, 27]
+2025-03-26 18:00:07,532 - INFO - Starting evaluation of 50 queries
+2025-03-26 18:00:07,532 - DEBUG - Processing query: developers skilled in Java, TypeScript, React... (type: skill_based)
+2025-03-26 18:00:07,909 - DEBUG - Got 10 search results
+2025-03-26 18:00:07,909 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:07,909 - DEBUG - Relevant indices: [11, 2850, 508, 4041, 4513, 4553, 4581, 5154, 5714, 9233]
+2025-03-26 18:00:07,911 - DEBUG - Processing query: experts with Java and TypeScript and React experience... (type: skill_based)
+2025-03-26 18:00:08,300 - DEBUG - Got 10 search results
+2025-03-26 18:00:08,301 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:08,301 - DEBUG - Relevant indices: [11, 2850, 508, 4041, 4513, 4553, 4581, 5154, 5714, 9233]
+2025-03-26 18:00:08,303 - DEBUG - Processing query: developers skilled in Java, JavaScript, React... (type: skill_based)
+2025-03-26 18:00:08,908 - DEBUG - Got 10 search results
+2025-03-26 18:00:08,908 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:08,908 - DEBUG - Relevant indices: [28, 1729, 2441, 2555, 2569, 3643, 4248, 4354, 4593, 4690]
+2025-03-26 18:00:08,910 - DEBUG - Processing query: experts with Java and JavaScript and React experience... (type: skill_based)
+2025-03-26 18:00:09,504 - DEBUG - Got 10 search results
+2025-03-26 18:00:09,505 - DEBUG - Retrieved indices: [67, 290, 433, 485, 486, 618, 758, 891, 954, 1033]
+2025-03-26 18:00:09,505 - DEBUG - Relevant indices: [28, 1729, 2441, 2555, 2569, 3643, 4248, 4354, 4593, 4690]
+2025-03-26 18:00:09,506 - DEBUG - Processing query: developers skilled in Angular, Java, React... (type: skill_based)
+2025-03-26 18:00:09,905 - DEBUG - Got 10 search results
+2025-03-26 18:00:09,905 - DEBUG - Retrieved indices: [41, 63, 106, 108, 131, 151, 161, 185, 194, 210]
+2025-03-26 18:00:09,906 - DEBUG - Relevant indices: [61, 4683, 2343, 8400, 5656, 690, 3161, 3459, 6965, 9233]
+2025-03-26 18:00:09,908 - DEBUG - Processing query: experts with Angular and Java and React experience... (type: skill_based)
+2025-03-26 18:00:10,320 - DEBUG - Got 10 search results
+2025-03-26 18:00:10,320 - DEBUG - Retrieved indices: [67, 290, 433, 485, 486, 618, 758, 891, 954, 1033]
+2025-03-26 18:00:10,320 - DEBUG - Relevant indices: [61, 4683, 2343, 8400, 5656, 690, 3161, 3459, 6965, 9233]
+2025-03-26 18:00:10,322 - DEBUG - Processing query: developers skilled in C++, JavaScript, Java... (type: skill_based)
+2025-03-26 18:00:10,876 - DEBUG - Got 10 search results
+2025-03-26 18:00:10,876 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:10,876 - DEBUG - Relevant indices: [119, 306, 2827, 3757, 3885, 4845, 1091, 1138, 1283, 1288]
+2025-03-26 18:00:10,878 - DEBUG - Processing query: experts with C++ and JavaScript and Java experience... (type: skill_based)
+2025-03-26 18:00:11,423 - DEBUG - Got 8 search results
+2025-03-26 18:00:11,424 - DEBUG - Retrieved indices: [14, 51, 60, 73, 120, 141, 163, 169, 204, 226]
+2025-03-26 18:00:11,424 - DEBUG - Relevant indices: [119, 306, 2827, 3757, 3885, 4845, 1091, 1138, 1283, 1288]
+2025-03-26 18:00:11,425 - DEBUG - Processing query: developers skilled in Angular, TypeScript, React... (type: skill_based)
+2025-03-26 18:00:11,639 - DEBUG - Got 10 search results
+2025-03-26 18:00:11,639 - DEBUG - Retrieved indices: [41, 63, 106, 108, 131, 151, 161, 185, 194, 210]
+2025-03-26 18:00:11,639 - DEBUG - Relevant indices: [157, 1445, 2309, 2751, 3353, 3891, 4611, 6049, 6354, 6401]
+2025-03-26 18:00:11,641 - DEBUG - Processing query: experts with Angular and TypeScript and React experience... (type: skill_based)
+2025-03-26 18:00:11,891 - DEBUG - Got 10 search results
+2025-03-26 18:00:11,891 - DEBUG - Retrieved indices: [67, 290, 433, 485, 486, 618, 758, 891, 954, 1033]
+2025-03-26 18:00:11,891 - DEBUG - Relevant indices: [157, 1445, 2309, 2751, 3353, 3891, 4611, 6049, 6354, 6401]
+2025-03-26 18:00:11,893 - DEBUG - Processing query: developers skilled in AWS, GraphQL, React... (type: skill_based)
+2025-03-26 18:00:12,113 - DEBUG - Got 10 search results
+2025-03-26 18:00:12,113 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:12,113 - DEBUG - Relevant indices: [200, 4280, 5708, 7711, 991, 1518, 214, 125, 174, 587]
+2025-03-26 18:00:12,115 - DEBUG - Processing query: experts with AWS and GraphQL and React experience... (type: skill_based)
+2025-03-26 18:00:12,388 - DEBUG - Got 10 search results
+2025-03-26 18:00:12,388 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:12,388 - DEBUG - Relevant indices: [200, 4280, 5708, 7711, 991, 1518, 214, 125, 174, 587]
+2025-03-26 18:00:12,390 - DEBUG - Processing query: developers skilled in Terraform, C++, Python... (type: skill_based)
+2025-03-26 18:00:12,791 - DEBUG - Got 10 search results
+2025-03-26 18:00:12,791 - DEBUG - Retrieved indices: [55, 96, 196, 243, 279, 384, 491, 595, 662, 765]
+2025-03-26 18:00:12,791 - DEBUG - Relevant indices: [202, 1692, 127, 160, 313, 371, 952, 1089, 1169, 1311]
+2025-03-26 18:00:12,793 - DEBUG - Processing query: experts with Terraform and C++ and Python experience... (type: skill_based)
+2025-03-26 18:00:13,201 - DEBUG - Got 10 search results
+2025-03-26 18:00:13,201 - DEBUG - Retrieved indices: [64, 85, 393, 417, 483, 522, 719, 727, 740, 885]
+2025-03-26 18:00:13,201 - DEBUG - Relevant indices: [202, 1692, 127, 160, 313, 371, 952, 1089, 1169, 1311]
+2025-03-26 18:00:13,204 - DEBUG - Processing query: developers skilled in AWS, Java, TypeScript... (type: skill_based)
+2025-03-26 18:00:13,590 - DEBUG - Got 10 search results
+2025-03-26 18:00:13,590 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:13,590 - DEBUG - Relevant indices: [214, 6199, 2960, 508, 3453, 4041, 4513, 4581, 5656, 5714]
+2025-03-26 18:00:13,593 - DEBUG - Processing query: experts with AWS and Java and TypeScript experience... (type: skill_based)
+2025-03-26 18:00:13,995 - DEBUG - Got 10 search results
+2025-03-26 18:00:13,995 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:13,995 - DEBUG - Relevant indices: [214, 6199, 2960, 508, 3453, 4041, 4513, 4581, 5656, 5714]
+2025-03-26 18:00:13,997 - DEBUG - Processing query: developers skilled in Java, JavaScript, CSS... (type: skill_based)
+2025-03-26 18:00:14,638 - DEBUG - Got 10 search results
+2025-03-26 18:00:14,638 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:14,638 - DEBUG - Relevant indices: [221, 4822, 7141, 4553, 5154, 6765, 7977, 8624, 9233, 143]
+2025-03-26 18:00:14,640 - DEBUG - Processing query: experts with Java and JavaScript and CSS experience... (type: skill_based)
+2025-03-26 18:00:15,221 - DEBUG - Got 10 search results
+2025-03-26 18:00:15,221 - DEBUG - Retrieved indices: [55, 96, 196, 243, 279, 384, 491, 595, 662, 765]
+2025-03-26 18:00:15,221 - DEBUG - Relevant indices: [221, 4822, 7141, 4553, 5154, 6765, 7977, 8624, 9233, 143]
+2025-03-26 18:00:15,223 - DEBUG - Processing query: developers skilled in Java, JavaScript, Python... (type: skill_based)
+2025-03-26 18:00:16,071 - DEBUG - Got 10 search results
+2025-03-26 18:00:16,072 - DEBUG - Retrieved indices: [19, 100, 135, 146, 173, 211, 228, 289, 295, 326]
+2025-03-26 18:00:16,072 - DEBUG - Relevant indices: [226, 4045, 625, 748, 1053, 1278, 1344, 1401, 1648, 2033]
+2025-03-26 18:00:16,073 - DEBUG - Processing query: experts with Java and JavaScript and Python experience... (type: skill_based)
+2025-03-26 18:00:16,906 - DEBUG - Got 9 search results
+2025-03-26 18:00:16,906 - DEBUG - Retrieved indices: [19, 100, 135, 146, 173, 211, 228, 289, 295, 326]
+2025-03-26 18:00:16,907 - DEBUG - Relevant indices: [226, 4045, 625, 748, 1053, 1278, 1344, 1401, 1648, 2033]
+2025-03-26 18:00:16,908 - DEBUG - Processing query: developers skilled in C++, JavaScript, Java... (type: skill_based)
+2025-03-26 18:00:17,546 - DEBUG - Got 10 search results
+2025-03-26 18:00:17,546 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:17,547 - DEBUG - Relevant indices: [119, 306, 2827, 3757, 3885, 4845, 1091, 1138, 1283, 1288]
+2025-03-26 18:00:17,549 - DEBUG - Processing query: experts with C++ and JavaScript and Java experience... (type: skill_based)
+2025-03-26 18:00:18,363 - DEBUG - Got 8 search results
+2025-03-26 18:00:18,363 - DEBUG - Retrieved indices: [14, 51, 60, 73, 120, 141, 163, 169, 204, 226]
+2025-03-26 18:00:18,363 - DEBUG - Relevant indices: [119, 306, 2827, 3757, 3885, 4845, 1091, 1138, 1283, 1288]
+2025-03-26 18:00:18,366 - DEBUG - Processing query: developers skilled in HTML, Java, React... (type: skill_based)
+2025-03-26 18:00:19,495 - DEBUG - Got 10 search results
+2025-03-26 18:00:19,495 - DEBUG - Retrieved indices: [19, 100, 135, 146, 173, 211, 228, 289, 295, 326]
+2025-03-26 18:00:19,495 - DEBUG - Relevant indices: [314, 3512, 4694, 1374, 2850, 6283, 6765, 7977, 8624, 9233]
+2025-03-26 18:00:19,499 - DEBUG - Processing query: experts with HTML and Java and React experience... (type: skill_based)
+2025-03-26 18:00:20,600 - DEBUG - Got 10 search results
+2025-03-26 18:00:20,601 - DEBUG - Retrieved indices: [64, 85, 393, 417, 483, 522, 719, 727, 740, 885]
+2025-03-26 18:00:20,601 - DEBUG - Relevant indices: [314, 3512, 4694, 1374, 2850, 6283, 6765, 7977, 8624, 9233]
+2025-03-26 18:00:20,604 - DEBUG - Processing query: developers skilled in Node.js, Java, React... (type: skill_based)
+2025-03-26 18:00:21,253 - DEBUG - Got 10 search results
+2025-03-26 18:00:21,253 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:21,253 - DEBUG - Relevant indices: [352, 2318, 2848, 4406, 2385, 2426, 4176, 4683, 5253, 6575]
+2025-03-26 18:00:21,256 - DEBUG - Processing query: experts with Node.js and Java and React experience... (type: skill_based)
+2025-03-26 18:00:21,954 - DEBUG - Got 10 search results
+2025-03-26 18:00:21,955 - DEBUG - Retrieved indices: [67, 290, 433, 485, 486, 618, 758, 891, 954, 1033]
+2025-03-26 18:00:21,955 - DEBUG - Relevant indices: [352, 2318, 2848, 4406, 2385, 2426, 4176, 4683, 5253, 6575]
+2025-03-26 18:00:21,958 - DEBUG - Processing query: developers skilled in C++, Python, Java... (type: skill_based)
+2025-03-26 18:00:22,847 - DEBUG - Got 6 search results
+2025-03-26 18:00:22,848 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:22,848 - DEBUG - Relevant indices: [353, 719, 1115, 1428, 2319, 2855, 3141, 3406, 3701, 4297]
+2025-03-26 18:00:22,851 - DEBUG - Processing query: experts with C++ and Python and Java experience... (type: skill_based)
+2025-03-26 18:00:23,651 - DEBUG - Got 10 search results
+2025-03-26 18:00:23,651 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:23,651 - DEBUG - Relevant indices: [353, 719, 1115, 1428, 2319, 2855, 3141, 3406, 3701, 4297]
+2025-03-26 18:00:23,654 - DEBUG - Processing query: developers skilled in C++, SQL, PostgreSQL... (type: skill_based)
+2025-03-26 18:00:23,731 - DEBUG - Got 2 search results
+2025-03-26 18:00:23,732 - DEBUG - Retrieved indices: [5272, 5335, 5488, 5636, 7277]
+2025-03-26 18:00:23,732 - DEBUG - Relevant indices: [354, 1283, 169, 509, 610, 814, 823, 950, 1187, 1533]
+2025-03-26 18:00:23,734 - DEBUG - Processing query: experts with C++ and SQL and PostgreSQL experience... (type: skill_based)
+2025-03-26 18:00:23,868 - DEBUG - Got 10 search results
+2025-03-26 18:00:23,868 - DEBUG - Retrieved indices: [1313, 1466, 1635, 1753, 1917, 2150, 3078, 3479, 3640, 4633]
+2025-03-26 18:00:23,868 - DEBUG - Relevant indices: [354, 1283, 169, 509, 610, 814, 823, 950, 1187, 1533]
+2025-03-26 18:00:23,871 - DEBUG - Processing query: developers skilled in AWS, Azure, SQL... (type: skill_based)
+2025-03-26 18:00:24,055 - DEBUG - Got 10 search results
+2025-03-26 18:00:24,056 - DEBUG - Retrieved indices: [668, 1058, 1253, 1274, 1429, 3714, 4278, 4433, 4704, 5299]
+2025-03-26 18:00:24,056 - DEBUG - Relevant indices: [440, 4673, 1208, 2216, 1522, 2526, 3034, 3829, 3967, 4789]
+2025-03-26 18:00:24,059 - DEBUG - Processing query: experts with AWS and Azure and SQL experience... (type: skill_based)
+2025-03-26 18:00:24,290 - DEBUG - Got 10 search results
+2025-03-26 18:00:24,290 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:24,290 - DEBUG - Relevant indices: [440, 4673, 1208, 2216, 1522, 2526, 3034, 3829, 3967, 4789]
+2025-03-26 18:00:24,293 - DEBUG - Processing query: developers skilled in HTML, Java, MySQL... (type: skill_based)
+2025-03-26 18:00:25,248 - DEBUG - Got 10 search results
+2025-03-26 18:00:25,249 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:25,249 - DEBUG - Relevant indices: [462, 7773, 2384, 3098, 781, 826, 4463, 4861, 2257, 3704]
+2025-03-26 18:00:25,251 - DEBUG - Processing query: experts with HTML and Java and MySQL experience... (type: skill_based)
+2025-03-26 18:00:26,177 - DEBUG - Got 10 search results
+2025-03-26 18:00:26,178 - DEBUG - Retrieved indices: [57, 80, 375, 1282, 1709, 1961, 2463, 2618, 2763, 2817]
+2025-03-26 18:00:26,178 - DEBUG - Relevant indices: [462, 7773, 2384, 3098, 781, 826, 4463, 4861, 2257, 3704]
+2025-03-26 18:00:26,180 - DEBUG - Processing query: developers skilled in Bash, Python, Linux... (type: skill_based)
+2025-03-26 18:00:26,654 - DEBUG - Got 10 search results
+2025-03-26 18:00:26,654 - DEBUG - Retrieved indices: [19, 100, 135, 146, 173, 211, 228, 289, 295, 326]
+2025-03-26 18:00:26,654 - DEBUG - Relevant indices: [465, 4789, 4940, 7568, 1344, 1534, 1998, 2275, 2671, 4180]
+2025-03-26 18:00:26,657 - DEBUG - Processing query: experts with Bash and Python and Linux experience... (type: skill_based)
+2025-03-26 18:00:27,106 - DEBUG - Got 8 search results
+2025-03-26 18:00:27,106 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:27,106 - DEBUG - Relevant indices: [465, 4789, 4940, 7568, 1344, 1534, 1998, 2275, 2671, 4180]
+2025-03-26 18:00:27,109 - DEBUG - Processing query: developers skilled in Java, JavaScript, TypeScript... (type: skill_based)
+2025-03-26 18:00:28,010 - DEBUG - Got 10 search results
+2025-03-26 18:00:28,010 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:28,011 - DEBUG - Relevant indices: [508, 4041, 4513, 4581, 5714, 11, 5870, 6199, 6545, 6929]
+2025-03-26 18:00:28,013 - DEBUG - Processing query: experts with Java and JavaScript and TypeScript experience... (type: skill_based)
+2025-03-26 18:00:28,891 - DEBUG - Got 10 search results
+2025-03-26 18:00:28,891 - DEBUG - Retrieved indices: [1, 3, 5, 6, 14, 16, 18, 27, 29, 31]
+2025-03-26 18:00:28,891 - DEBUG - Relevant indices: [508, 4041, 4513, 4581, 5714, 11, 5870, 6199, 6545, 6929]
+2025-03-26 18:00:28,894 - DEBUG - Processing query: developers skilled in Java, Python, Kafka... (type: skill_based)
+2025-03-26 18:00:29,630 - DEBUG - Got 8 search results
+2025-03-26 18:00:29,630 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:29,630 - DEBUG - Relevant indices: [522, 252, 1736, 2544, 3220, 3746, 4101, 4819, 7268, 7479]
+2025-03-26 18:00:29,633 - DEBUG - Processing query: experts with Java and Python and Kafka experience... (type: skill_based)
+2025-03-26 18:00:30,355 - DEBUG - Got 6 search results
+2025-03-26 18:00:30,355 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:30,355 - DEBUG - Relevant indices: [522, 252, 1736, 2544, 3220, 3746, 4101, 4819, 7268, 7479]
+2025-03-26 18:00:30,358 - DEBUG - Processing query: developers skilled in PowerShell, Java, TypeScript... (type: skill_based)
+2025-03-26 18:00:30,838 - DEBUG - Got 10 search results
+2025-03-26 18:00:30,838 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:30,838 - DEBUG - Relevant indices: [546, 4105, 1091, 1138, 1283, 2102, 2731, 3257, 3331, 3453]
+2025-03-26 18:00:30,841 - DEBUG - Processing query: experts with PowerShell and Java and TypeScript experience... (type: skill_based)
+2025-03-26 18:00:31,351 - DEBUG - Got 10 search results
+2025-03-26 18:00:31,351 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:31,351 - DEBUG - Relevant indices: [546, 4105, 1091, 1138, 1283, 2102, 2731, 3257, 3331, 3453]
+2025-03-26 18:00:31,354 - DEBUG - Processing query: developers skilled in HTML, Java, TypeScript... (type: skill_based)
+2025-03-26 18:00:32,431 - DEBUG - Got 10 search results
+2025-03-26 18:00:32,432 - DEBUG - Retrieved indices: [67, 290, 433, 485, 486, 618, 758, 891, 954, 1033]
+2025-03-26 18:00:32,432 - DEBUG - Relevant indices: [609, 1943, 2850, 5025, 1288, 3811, 4553, 5154, 6765, 7977]
+2025-03-26 18:00:32,434 - DEBUG - Processing query: experts with HTML and Java and TypeScript experience... (type: skill_based)
+2025-03-26 18:00:33,491 - DEBUG - Got 10 search results
+2025-03-26 18:00:33,492 - DEBUG - Retrieved indices: [67, 290, 433, 485, 486, 618, 758, 891, 954, 1033]
+2025-03-26 18:00:33,492 - DEBUG - Relevant indices: [609, 1943, 2850, 5025, 1288, 3811, 4553, 5154, 6765, 7977]
+2025-03-26 18:00:33,494 - DEBUG - Processing query: developers skilled in Java, JavaScript, GitHub... (type: skill_based)
+2025-03-26 18:00:34,349 - DEBUG - Got 10 search results
+2025-03-26 18:00:34,349 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:34,350 - DEBUG - Relevant indices: [617, 5097, 5528, 6186, 6701, 7346, 5089, 989, 6361, 77]
+2025-03-26 18:00:34,353 - DEBUG - Processing query: experts with Java and JavaScript and GitHub experience... (type: skill_based)
+2025-03-26 18:00:35,219 - DEBUG - Got 9 search results
+2025-03-26 18:00:35,219 - DEBUG - Retrieved indices: [10, 40, 48, 91, 111, 117, 130, 133, 137, 145]
+2025-03-26 18:00:35,219 - DEBUG - Relevant indices: [617, 5097, 5528, 6186, 6701, 7346, 5089, 989, 6361, 77]
+2025-03-26 18:00:35,222 - DEBUG - Processing query: developers skilled in Java, JavaScript, Linux... (type: skill_based)
+2025-03-26 18:00:36,109 - DEBUG - Got 9 search results
+2025-03-26 18:00:36,109 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:36,109 - DEBUG - Relevant indices: [625, 1053, 4057, 4890, 226, 143, 390, 836, 1250, 1334]
+2025-03-26 18:00:36,112 - DEBUG - Processing query: experts with Java and JavaScript and Linux experience... (type: skill_based)
+2025-03-26 18:00:36,892 - DEBUG - Got 8 search results
+2025-03-26 18:00:36,892 - DEBUG - Retrieved indices: [14, 51, 60, 73, 120, 141, 163, 169, 204, 226]
+2025-03-26 18:00:36,892 - DEBUG - Relevant indices: [625, 1053, 4057, 4890, 226, 143, 390, 836, 1250, 1334]
+2025-03-26 18:00:36,895 - DEBUG - Processing query: developers skilled in Java, JavaScript, Bash... (type: skill_based)
+2025-03-26 18:00:37,692 - DEBUG - Got 10 search results
+2025-03-26 18:00:37,693 - DEBUG - Retrieved indices: [5, 42, 45, 46, 62, 86, 90, 110, 112, 134]
+2025-03-26 18:00:37,693 - DEBUG - Relevant indices: [690, 748, 1278, 1401, 1648, 2033, 3737, 3867, 4208, 6137]
+2025-03-26 18:00:37,695 - DEBUG - Processing query: experts with Java and JavaScript and Bash experience... (type: skill_based)
+2025-03-26 18:00:38,451 - DEBUG - Got 10 search results
+2025-03-26 18:00:38,452 - DEBUG - Retrieved indices: [14, 51, 60, 73, 120, 141, 163, 169, 204, 226]
+2025-03-26 18:00:38,452 - DEBUG - Relevant indices: [690, 748, 1278, 1401, 1648, 2033, 3737, 3867, 4208, 6137]
+2025-03-26 18:00:38,455 - INFO - Starting evaluation of 50 queries
+2025-03-26 18:00:38,455 - DEBUG - Processing query: rising developers with high impact... (type: popularity_based)
+2025-03-26 18:00:38,513 - DEBUG - Got 0 search results
+2025-03-26 18:00:38,513 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:38,513 - DEBUG - Relevant indices: [0, 4, 12, 15, 19, 20, 24, 25, 26, 28]
+2025-03-26 18:00:38,514 - DEBUG - Processing query: highly regarded Assembly developers... (type: popularity_based)
+2025-03-26 18:00:38,571 - DEBUG - Got 0 search results
+2025-03-26 18:00:38,571 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:38,572 - DEBUG - Relevant indices: [0, 4, 12, 15, 19, 20, 24, 25, 26, 28]
+2025-03-26 18:00:38,572 - DEBUG - Processing query: developers with significant Assembly contributions... (type: popularity_based)
+2025-03-26 18:00:38,632 - DEBUG - Got 0 search results
+2025-03-26 18:00:38,632 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:38,632 - DEBUG - Relevant indices: [0, 4, 12, 15, 19, 20, 24, 25, 26, 28]
+2025-03-26 18:00:38,632 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:38,752 - DEBUG - Got 10 search results
+2025-03-26 18:00:38,752 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:38,753 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:38,755 - DEBUG - Processing query: highly regarded Ruby developers... (type: popularity_based)
+2025-03-26 18:00:38,811 - DEBUG - Got 0 search results
+2025-03-26 18:00:38,811 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:38,811 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:38,811 - DEBUG - Processing query: developers with significant Ruby contributions... (type: popularity_based)
+2025-03-26 18:00:38,869 - DEBUG - Got 4 search results
+2025-03-26 18:00:38,869 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:38,869 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:38,870 - DEBUG - Processing query: rising developers with high impact... (type: popularity_based)
+2025-03-26 18:00:38,922 - DEBUG - Got 0 search results
+2025-03-26 18:00:38,922 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:38,922 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 13, 14, 21, 22]
+2025-03-26 18:00:38,922 - DEBUG - Processing query: highly regarded Python developers... (type: popularity_based)
+2025-03-26 18:00:39,263 - DEBUG - Got 10 search results
+2025-03-26 18:00:39,264 - DEBUG - Retrieved indices: [787, 1266, 1351, 2059, 2234, 2275, 2355, 2616, 2620, 3308]
+2025-03-26 18:00:39,264 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 13, 14, 21, 22]
+2025-03-26 18:00:39,266 - DEBUG - Processing query: developers with significant Python contributions... (type: popularity_based)
+2025-03-26 18:00:39,647 - DEBUG - Got 10 search results
+2025-03-26 18:00:39,647 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:39,647 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 13, 14, 21, 22]
+2025-03-26 18:00:39,650 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:39,772 - DEBUG - Got 10 search results
+2025-03-26 18:00:39,772 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:39,772 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:39,775 - DEBUG - Processing query: highly regarded JavaScript developers... (type: popularity_based)
+2025-03-26 18:00:40,419 - DEBUG - Got 10 search results
+2025-03-26 18:00:40,419 - DEBUG - Retrieved indices: [11, 28, 61, 125, 157, 174, 200, 202, 214, 314]
+2025-03-26 18:00:40,419 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:40,422 - DEBUG - Processing query: developers with significant JavaScript contributions... (type: popularity_based)
+2025-03-26 18:00:41,120 - DEBUG - Got 10 search results
+2025-03-26 18:00:41,121 - DEBUG - Retrieved indices: [781, 1040, 6596, 7199, 7336, 8100, 5169, 5376, 5549, 5793]
+2025-03-26 18:00:41,121 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:41,124 - DEBUG - Processing query: established developers with high impact... (type: popularity_based)
+2025-03-26 18:00:41,271 - DEBUG - Got 4 search results
+2025-03-26 18:00:41,271 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:41,271 - DEBUG - Relevant indices: [0, 4, 15, 19, 20, 24, 32, 41, 42, 46]
+2025-03-26 18:00:41,272 - DEBUG - Processing query: highly regarded Python developers... (type: popularity_based)
+2025-03-26 18:00:41,609 - DEBUG - Got 10 search results
+2025-03-26 18:00:41,610 - DEBUG - Retrieved indices: [787, 1266, 1351, 2059, 2234, 2275, 2355, 2616, 2620, 3308]
+2025-03-26 18:00:41,610 - DEBUG - Relevant indices: [0, 4, 15, 19, 20, 24, 32, 41, 42, 46]
+2025-03-26 18:00:41,613 - DEBUG - Processing query: developers with significant Python contributions... (type: popularity_based)
+2025-03-26 18:00:41,999 - DEBUG - Got 10 search results
+2025-03-26 18:00:41,999 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:41,999 - DEBUG - Relevant indices: [0, 4, 15, 19, 20, 24, 32, 41, 42, 46]
+2025-03-26 18:00:42,002 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:42,123 - DEBUG - Got 10 search results
+2025-03-26 18:00:42,123 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:42,124 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 14]
+2025-03-26 18:00:42,126 - DEBUG - Processing query: highly regarded Jupyter Notebook developers... (type: popularity_based)
+2025-03-26 18:00:42,196 - DEBUG - Got 5 search results
+2025-03-26 18:00:42,196 - DEBUG - Retrieved indices: [2005, 2902, 5820, 7236, 7421, 8243, 462, 781, 1156, 2384]
+2025-03-26 18:00:42,197 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 14]
+2025-03-26 18:00:42,199 - DEBUG - Processing query: developers with significant Jupyter Notebook contributions... (type: popularity_based)
+2025-03-26 18:00:42,267 - DEBUG - Got 3 search results
+2025-03-26 18:00:42,268 - DEBUG - Retrieved indices: [2005, 2902, 5820, 7236, 7421, 8243, 462, 781, 1156, 2384]
+2025-03-26 18:00:42,268 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 14]
+2025-03-26 18:00:42,270 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:42,384 - DEBUG - Got 10 search results
+2025-03-26 18:00:42,384 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:42,384 - DEBUG - Relevant indices: [1, 3, 6, 9, 10, 16, 18, 23, 27, 30]
+2025-03-26 18:00:42,386 - DEBUG - Processing query: highly regarded JavaScript developers... (type: popularity_based)
+2025-03-26 18:00:43,026 - DEBUG - Got 10 search results
+2025-03-26 18:00:43,026 - DEBUG - Retrieved indices: [11, 28, 61, 125, 157, 174, 200, 202, 214, 314]
+2025-03-26 18:00:43,026 - DEBUG - Relevant indices: [1, 3, 6, 9, 10, 16, 18, 23, 27, 30]
+2025-03-26 18:00:43,029 - DEBUG - Processing query: developers with significant JavaScript contributions... (type: popularity_based)
+2025-03-26 18:00:43,733 - DEBUG - Got 10 search results
+2025-03-26 18:00:43,733 - DEBUG - Retrieved indices: [781, 1040, 6596, 7199, 7336, 8100, 5169, 5376, 5549, 5793]
+2025-03-26 18:00:43,733 - DEBUG - Relevant indices: [1, 3, 6, 9, 10, 16, 18, 23, 27, 30]
+2025-03-26 18:00:43,736 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:43,854 - DEBUG - Got 10 search results
+2025-03-26 18:00:43,854 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:43,854 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 13, 14, 21, 22]
+2025-03-26 18:00:43,856 - DEBUG - Processing query: highly regarded HTML developers... (type: popularity_based)
+2025-03-26 18:00:44,390 - DEBUG - Got 10 search results
+2025-03-26 18:00:44,390 - DEBUG - Retrieved indices: [5169, 5376, 5549, 5793, 6723, 2005, 2902, 5820, 7236, 7421]
+2025-03-26 18:00:44,390 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 13, 14, 21, 22]
+2025-03-26 18:00:44,394 - DEBUG - Processing query: developers with significant HTML contributions... (type: popularity_based)
+2025-03-26 18:00:44,969 - DEBUG - Got 10 search results
+2025-03-26 18:00:44,969 - DEBUG - Retrieved indices: [352, 433, 721, 1040, 1248, 1296, 1312, 1315, 1964, 2385]
+2025-03-26 18:00:44,969 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 13, 14, 21, 22]
+2025-03-26 18:00:44,972 - DEBUG - Processing query: rising developers with high impact... (type: popularity_based)
+2025-03-26 18:00:45,030 - DEBUG - Got 0 search results
+2025-03-26 18:00:45,030 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:45,031 - DEBUG - Relevant indices: [2, 7, 8, 12, 14, 24, 25, 26, 28, 29]
+2025-03-26 18:00:45,031 - DEBUG - Processing query: highly regarded Python developers... (type: popularity_based)
+2025-03-26 18:00:45,371 - DEBUG - Got 10 search results
+2025-03-26 18:00:45,371 - DEBUG - Retrieved indices: [787, 1266, 1351, 2059, 2234, 2275, 2355, 2616, 2620, 3308]
+2025-03-26 18:00:45,371 - DEBUG - Relevant indices: [2, 7, 8, 12, 14, 24, 25, 26, 28, 29]
+2025-03-26 18:00:45,374 - DEBUG - Processing query: developers with significant Python contributions... (type: popularity_based)
+2025-03-26 18:00:45,737 - DEBUG - Got 10 search results
+2025-03-26 18:00:45,738 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:45,738 - DEBUG - Relevant indices: [2, 7, 8, 12, 14, 24, 25, 26, 28, 29]
+2025-03-26 18:00:45,741 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:45,860 - DEBUG - Got 10 search results
+2025-03-26 18:00:45,860 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:45,860 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:45,862 - DEBUG - Processing query: highly regarded Python developers... (type: popularity_based)
+2025-03-26 18:00:46,225 - DEBUG - Got 10 search results
+2025-03-26 18:00:46,225 - DEBUG - Retrieved indices: [787, 1266, 1351, 2059, 2234, 2275, 2355, 2616, 2620, 3308]
+2025-03-26 18:00:46,225 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:46,228 - DEBUG - Processing query: developers with significant Python contributions... (type: popularity_based)
+2025-03-26 18:00:46,590 - DEBUG - Got 10 search results
+2025-03-26 18:00:46,590 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:46,590 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:46,593 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:46,713 - DEBUG - Got 10 search results
+2025-03-26 18:00:46,713 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:46,714 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:46,716 - DEBUG - Processing query: highly regarded Java developers... (type: popularity_based)
+2025-03-26 18:00:47,014 - DEBUG - Got 10 search results
+2025-03-26 18:00:47,014 - DEBUG - Retrieved indices: [781, 1040, 6596, 7199, 7336, 8100, 5515, 5764, 6313, 6386]
+2025-03-26 18:00:47,015 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:47,017 - DEBUG - Processing query: developers with significant Java contributions... (type: popularity_based)
+2025-03-26 18:00:47,291 - DEBUG - Got 10 search results
+2025-03-26 18:00:47,291 - DEBUG - Retrieved indices: [781, 1040, 6596, 7199, 7336, 8100, 5515, 5764, 6313, 6386]
+2025-03-26 18:00:47,291 - DEBUG - Relevant indices: [1, 3, 5, 6, 9, 10, 11, 13, 16, 18]
+2025-03-26 18:00:47,294 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:47,417 - DEBUG - Got 10 search results
+2025-03-26 18:00:47,417 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:47,417 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 14]
+2025-03-26 18:00:47,419 - DEBUG - Processing query: highly regarded TypeScript developers... (type: popularity_based)
+2025-03-26 18:00:47,541 - DEBUG - Got 10 search results
+2025-03-26 18:00:47,542 - DEBUG - Retrieved indices: [5169, 5376, 5549, 5793, 6723, 787, 1266, 1351, 2059, 2234]
+2025-03-26 18:00:47,542 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 14]
+2025-03-26 18:00:47,544 - DEBUG - Processing query: developers with significant TypeScript contributions... (type: popularity_based)
+2025-03-26 18:00:47,668 - DEBUG - Got 10 search results
+2025-03-26 18:00:47,669 - DEBUG - Retrieved indices: [5169, 5376, 5549, 5793, 6723, 462, 781, 1156, 2384, 2581]
+2025-03-26 18:00:47,669 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 14]
+2025-03-26 18:00:47,671 - DEBUG - Processing query: emerging developers in Java, CSS... (type: popularity_based)
+2025-03-26 18:00:48,119 - DEBUG - Got 10 search results
+2025-03-26 18:00:48,119 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:48,119 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 14]
+2025-03-26 18:00:48,122 - DEBUG - Processing query: rising developers with high impact... (type: popularity_based)
+2025-03-26 18:00:48,180 - DEBUG - Got 0 search results
+2025-03-26 18:00:48,180 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:48,180 - DEBUG - Relevant indices: [0, 2, 7, 8, 12, 14, 15, 20, 24, 25]
+2025-03-26 18:00:48,180 - DEBUG - Processing query: highly regarded JavaScript developers... (type: popularity_based)
+2025-03-26 18:00:48,818 - DEBUG - Got 10 search results
+2025-03-26 18:00:48,819 - DEBUG - Retrieved indices: [11, 28, 61, 125, 157, 174, 200, 202, 214, 314]
+2025-03-26 18:00:48,819 - DEBUG - Relevant indices: [0, 2, 7, 8, 12, 14, 15, 20, 24, 25]
+2025-03-26 18:00:48,821 - DEBUG - Processing query: developers with significant JavaScript contributions... (type: popularity_based)
+2025-03-26 18:00:49,490 - DEBUG - Got 10 search results
+2025-03-26 18:00:49,490 - DEBUG - Retrieved indices: [781, 1040, 6596, 7199, 7336, 8100, 5169, 5376, 5549, 5793]
+2025-03-26 18:00:49,490 - DEBUG - Relevant indices: [0, 2, 7, 8, 12, 14, 15, 20, 24, 25]
+2025-03-26 18:00:49,492 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:49,612 - DEBUG - Got 10 search results
+2025-03-26 18:00:49,612 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:49,612 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 16]
+2025-03-26 18:00:49,615 - DEBUG - Processing query: highly regarded Python developers... (type: popularity_based)
+2025-03-26 18:00:49,958 - DEBUG - Got 10 search results
+2025-03-26 18:00:49,959 - DEBUG - Retrieved indices: [787, 1266, 1351, 2059, 2234, 2275, 2355, 2616, 2620, 3308]
+2025-03-26 18:00:49,959 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 16]
+2025-03-26 18:00:49,961 - DEBUG - Processing query: developers with significant Python contributions... (type: popularity_based)
+2025-03-26 18:00:50,324 - DEBUG - Got 10 search results
+2025-03-26 18:00:50,324 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:50,324 - DEBUG - Relevant indices: [1, 2, 3, 5, 7, 9, 10, 11, 13, 16]
+2025-03-26 18:00:50,327 - DEBUG - Processing query: rising developers with high impact... (type: popularity_based)
+2025-03-26 18:00:50,384 - DEBUG - Got 0 search results
+2025-03-26 18:00:50,384 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:50,384 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 14, 25, 26, 29]
+2025-03-26 18:00:50,384 - DEBUG - Processing query: highly regarded C++ developers... (type: popularity_based)
+2025-03-26 18:00:50,439 - DEBUG - Got 5 search results
+2025-03-26 18:00:50,439 - DEBUG - Retrieved indices: [5169, 5376, 5549, 5793, 6723, 5515, 5764, 6313, 6386, 9111]
+2025-03-26 18:00:50,439 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 14, 25, 26, 29]
+2025-03-26 18:00:50,441 - DEBUG - Processing query: developers with significant C++ contributions... (type: popularity_based)
+2025-03-26 18:00:50,501 - DEBUG - Got 0 search results
+2025-03-26 18:00:50,502 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:50,502 - DEBUG - Relevant indices: [2, 5, 7, 8, 11, 12, 14, 25, 26, 29]
+2025-03-26 18:00:50,502 - DEBUG - Processing query: rising developers with high impact... (type: popularity_based)
+2025-03-26 18:00:50,553 - DEBUG - Got 0 search results
+2025-03-26 18:00:50,554 - DEBUG - Retrieved indices: []
+2025-03-26 18:00:50,554 - DEBUG - Relevant indices: [0, 4, 12, 15, 19, 20, 24, 25, 26, 28]
+2025-03-26 18:00:50,554 - DEBUG - Processing query: highly regarded Python developers... (type: popularity_based)
+2025-03-26 18:00:50,896 - DEBUG - Got 10 search results
+2025-03-26 18:00:50,897 - DEBUG - Retrieved indices: [787, 1266, 1351, 2059, 2234, 2275, 2355, 2616, 2620, 3308]
+2025-03-26 18:00:50,897 - DEBUG - Relevant indices: [0, 4, 12, 15, 19, 20, 24, 25, 26, 28]
+2025-03-26 18:00:50,899 - DEBUG - Processing query: developers with significant Python contributions... (type: popularity_based)
+2025-03-26 18:00:51,262 - DEBUG - Got 10 search results
+2025-03-26 18:00:51,262 - DEBUG - Retrieved indices: [10, 13, 19, 101, 174, 175, 188, 274, 330, 358]
+2025-03-26 18:00:51,262 - DEBUG - Relevant indices: [0, 4, 12, 15, 19, 20, 24, 25, 26, 28]
+2025-03-26 18:00:51,265 - DEBUG - Processing query: emerging developers with high impact... (type: popularity_based)
+2025-03-26 18:00:51,388 - DEBUG - Got 10 search results
+2025-03-26 18:00:51,388 - DEBUG - Retrieved indices: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+2025-03-26 18:00:51,388 - DEBUG - Relevant indices: [1, 3, 6, 9, 10, 11, 13, 16, 18, 21]

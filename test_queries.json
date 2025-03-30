@@ -1,0 +1,3132 @@
+{
+  "language_based": [
+    {
+      "id": "lang_iDone",
+      "user_id": "iDone",
+      "type": "language_expertise",
+      "primary_language": "Assembly",
+      "relevant_indices": [
+        0,
+        42,
+        97,
+        120,
+        221,
+        230,
+        233,
+        243,
+        286,
+        335
+      ]
+    },
+    {
+      "id": "lang_Bhavikpatel576",
+      "user_id": "Bhavikpatel576",
+      "type": "language_expertise",
+      "primary_language": "Ruby",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        9,
+        12,
+        15,
+        18,
+        28,
+        34,
+        37
+      ]
+    },
+    {
+      "id": "lang_C-Anirudh",
+      "user_id": "C-Anirudh",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_eapo",
+      "user_id": "eapo",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_yzxing87",
+      "user_id": "yzxing87",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_ieferreira",
+      "user_id": "ieferreira",
+      "type": "language_expertise",
+      "primary_language": "Jupyter Notebook",
+      "relevant_indices": [
+        2,
+        5,
+        18,
+        19,
+        21,
+        26,
+        27,
+        35,
+        41,
+        42
+      ]
+    },
+    {
+      "id": "lang_benjamin-antupit",
+      "user_id": "benjamin-antupit",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_Frank-Dz",
+      "user_id": "Frank-Dz",
+      "type": "language_expertise",
+      "primary_language": "HTML",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        11,
+        13
+      ]
+    },
+    {
+      "id": "lang_XuanchenLi",
+      "user_id": "XuanchenLi",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_erikkaincolor",
+      "user_id": "erikkaincolor",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_Vinay786-3009",
+      "user_id": "Vinay786-3009",
+      "type": "language_expertise",
+      "primary_language": "Java",
+      "relevant_indices": [
+        0,
+        1,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lang_EbubeEvan",
+      "user_id": "EbubeEvan",
+      "type": "language_expertise",
+      "primary_language": "TypeScript",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        8,
+        11,
+        13,
+        16,
+        17,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lang_ak2consulting",
+      "user_id": "ak2consulting",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_Mr-Infect",
+      "user_id": "Mr-Infect",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_madmaxoft",
+      "user_id": "madmaxoft",
+      "type": "language_expertise",
+      "primary_language": "C++",
+      "relevant_indices": [
+        0,
+        3,
+        6,
+        8,
+        12,
+        14,
+        17,
+        18,
+        19,
+        23
+      ]
+    },
+    {
+      "id": "lang_edas",
+      "user_id": "edas",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_RyderBlack",
+      "user_id": "RyderBlack",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_arjuncvinod",
+      "user_id": "arjuncvinod",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_brianb1",
+      "user_id": "brianb1",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_HridyeshKumar",
+      "user_id": "HridyeshKumar",
+      "type": "language_expertise",
+      "primary_language": "C",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "lang_sap-labs-france",
+      "user_id": "sap-labs-france",
+      "type": "language_expertise",
+      "primary_language": "TypeScript",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        8,
+        11,
+        13,
+        16,
+        17,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lang_bennaaym",
+      "user_id": "bennaaym",
+      "type": "language_expertise",
+      "primary_language": "Prolog",
+      "relevant_indices": [
+        21,
+        1201,
+        1392,
+        1561,
+        1675,
+        1945,
+        2482,
+        2490,
+        2775,
+        2832
+      ]
+    },
+    {
+      "id": "lang_cmalard",
+      "user_id": "cmalard",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_tannerpace",
+      "user_id": "tannerpace",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_bekriebel",
+      "user_id": "bekriebel",
+      "type": "language_expertise",
+      "primary_language": "TypeScript",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        8,
+        11,
+        13,
+        16,
+        17,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lang_pampzrd",
+      "user_id": "pampzrd",
+      "type": "language_expertise",
+      "primary_language": "C#",
+      "relevant_indices": [
+        0,
+        12,
+        14,
+        21,
+        24,
+        25,
+        32,
+        33,
+        42,
+        49
+      ]
+    },
+    {
+      "id": "lang_cknoll",
+      "user_id": "cknoll",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_slowmoyang",
+      "user_id": "slowmoyang",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_macnick",
+      "user_id": "macnick",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_bmbergh",
+      "user_id": "bmbergh",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_davonbl",
+      "user_id": "davonbl",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_eydunn",
+      "user_id": "eydunn",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_rflechner",
+      "user_id": "rflechner",
+      "type": "language_expertise",
+      "primary_language": "C#",
+      "relevant_indices": [
+        0,
+        12,
+        14,
+        21,
+        24,
+        25,
+        32,
+        33,
+        42,
+        49
+      ]
+    },
+    {
+      "id": "lang_requeijaum",
+      "user_id": "requeijaum",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_bitsapien",
+      "user_id": "bitsapien",
+      "type": "language_expertise",
+      "primary_language": "Ruby",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        9,
+        12,
+        15,
+        18,
+        28,
+        34,
+        37
+      ]
+    },
+    {
+      "id": "lang_DveloperY0115",
+      "user_id": "DveloperY0115",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_garyb9",
+      "user_id": "garyb9",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_hannahpatellis",
+      "user_id": "hannahpatellis",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_Kimbangg",
+      "user_id": "Kimbangg",
+      "type": "language_expertise",
+      "primary_language": "TypeScript",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        8,
+        11,
+        13,
+        16,
+        17,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lang_andreyoshev",
+      "user_id": "andreyoshev",
+      "type": "language_expertise",
+      "primary_language": "JavaScript",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        9,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "lang_Gokul2172001",
+      "user_id": "Gokul2172001",
+      "type": "language_expertise",
+      "primary_language": "Java",
+      "relevant_indices": [
+        0,
+        1,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lang_michaeldouglas",
+      "user_id": "michaeldouglas",
+      "type": "language_expertise",
+      "primary_language": "PHP",
+      "relevant_indices": [
+        3,
+        12,
+        16,
+        17,
+        29,
+        31,
+        33,
+        34,
+        37,
+        41
+      ]
+    },
+    {
+      "id": "lang_Cyb3r-Monk",
+      "user_id": "Cyb3r-Monk",
+      "type": "language_expertise",
+      "primary_language": "Jupyter Notebook",
+      "relevant_indices": [
+        2,
+        5,
+        18,
+        19,
+        21,
+        26,
+        27,
+        35,
+        41,
+        42
+      ]
+    },
+    {
+      "id": "lang_bmelville",
+      "user_id": "bmelville",
+      "type": "language_expertise",
+      "primary_language": "Go",
+      "relevant_indices": [
+        2,
+        15,
+        23,
+        24,
+        25,
+        31,
+        34,
+        41,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "lang_Arna13",
+      "user_id": "Arna13",
+      "type": "language_expertise",
+      "primary_language": "Python",
+      "relevant_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "lang_abofficial444",
+      "user_id": "abofficial444",
+      "type": "language_expertise",
+      "primary_language": "Jupyter Notebook",
+      "relevant_indices": [
+        2,
+        5,
+        18,
+        19,
+        21,
+        26,
+        27,
+        35,
+        41,
+        42
+      ]
+    },
+    {
+      "id": "lang_labarba",
+      "user_id": "labarba",
+      "type": "language_expertise",
+      "primary_language": "Jupyter Notebook",
+      "relevant_indices": [
+        2,
+        5,
+        18,
+        19,
+        21,
+        26,
+        27,
+        35,
+        41,
+        42
+      ]
+    },
+    {
+      "id": "lang_ezekiel",
+      "user_id": "ezekiel",
+      "type": "language_expertise",
+      "primary_language": "Go",
+      "relevant_indices": [
+        2,
+        15,
+        23,
+        24,
+        25,
+        31,
+        34,
+        41,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "lang_ncs92",
+      "user_id": "ncs92",
+      "type": "language_expertise",
+      "primary_language": "Java",
+      "relevant_indices": [
+        0,
+        1,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lang_jboero",
+      "user_id": "jboero",
+      "type": "language_expertise",
+      "primary_language": "Shell",
+      "relevant_indices": [
+        2,
+        3,
+        9,
+        13,
+        14,
+        18,
+        22,
+        23,
+        24,
+        27
+      ]
+    }
+  ],
+  "skill_based": [
+    {
+      "id": "skills_EbubeEvan_0",
+      "user_id": "EbubeEvan",
+      "type": "skill_based",
+      "query": "developers skilled in Java, TypeScript, React",
+      "skills": [
+        "Java",
+        "TypeScript",
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        11,
+        2850,
+        508,
+        4041,
+        4513,
+        4553,
+        4581,
+        5154,
+        5714,
+        9233
+      ]
+    },
+    {
+      "id": "skills_EbubeEvan_1",
+      "user_id": "EbubeEvan",
+      "type": "skill_based",
+      "query": "experts with Java and TypeScript and React experience",
+      "skills": [
+        "Java",
+        "TypeScript",
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        11,
+        2850,
+        508,
+        4041,
+        4513,
+        4553,
+        4581,
+        5154,
+        5714,
+        9233
+      ]
+    },
+    {
+      "id": "skills_macnick_2",
+      "user_id": "macnick",
+      "type": "skill_based",
+      "query": "developers skilled in Java, JavaScript, React",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "React"
+      ],
+      "relevant_indices": [
+        28,
+        1729,
+        2441,
+        2555,
+        2569,
+        3643,
+        4248,
+        4354,
+        4593,
+        4690
+      ]
+    },
+    {
+      "id": "skills_macnick_3",
+      "user_id": "macnick",
+      "type": "skill_based",
+      "query": "experts with Java and JavaScript and React experience",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "React"
+      ],
+      "relevant_indices": [
+        28,
+        1729,
+        2441,
+        2555,
+        2569,
+        3643,
+        4248,
+        4354,
+        4593,
+        4690
+      ]
+    },
+    {
+      "id": "skills_Epaphrus_4",
+      "user_id": "Epaphrus",
+      "type": "skill_based",
+      "query": "developers skilled in Angular, Java, React",
+      "skills": [
+        "Angular",
+        "Java",
+        "React",
+        "Django",
+        "Bash",
+        "MongoDB",
+        "JavaScript",
+        "Python",
+        "CSS"
+      ],
+      "relevant_indices": [
+        61,
+        4683,
+        2343,
+        8400,
+        5656,
+        690,
+        3161,
+        3459,
+        6965,
+        9233
+      ]
+    },
+    {
+      "id": "skills_Epaphrus_5",
+      "user_id": "Epaphrus",
+      "type": "skill_based",
+      "query": "experts with Angular and Java and React experience",
+      "skills": [
+        "Angular",
+        "Java",
+        "React",
+        "Django",
+        "Bash",
+        "MongoDB",
+        "JavaScript",
+        "Python",
+        "CSS"
+      ],
+      "relevant_indices": [
+        61,
+        4683,
+        2343,
+        8400,
+        5656,
+        690,
+        3161,
+        3459,
+        6965,
+        9233
+      ]
+    },
+    {
+      "id": "skills_hecomi_6",
+      "user_id": "hecomi",
+      "type": "skill_based",
+      "query": "developers skilled in C++, JavaScript, Java",
+      "skills": [
+        "C++",
+        "JavaScript",
+        "Java"
+      ],
+      "relevant_indices": [
+        119,
+        306,
+        2827,
+        3757,
+        3885,
+        4845,
+        1091,
+        1138,
+        1283,
+        1288
+      ]
+    },
+    {
+      "id": "skills_hecomi_7",
+      "user_id": "hecomi",
+      "type": "skill_based",
+      "query": "experts with C++ and JavaScript and Java experience",
+      "skills": [
+        "C++",
+        "JavaScript",
+        "Java"
+      ],
+      "relevant_indices": [
+        119,
+        306,
+        2827,
+        3757,
+        3885,
+        4845,
+        1091,
+        1138,
+        1283,
+        1288
+      ]
+    },
+    {
+      "id": "skills_leonardssh_8",
+      "user_id": "leonardssh",
+      "type": "skill_based",
+      "query": "developers skilled in Angular, TypeScript, React",
+      "skills": [
+        "Angular",
+        "TypeScript",
+        "React"
+      ],
+      "relevant_indices": [
+        157,
+        1445,
+        2309,
+        2751,
+        3353,
+        3891,
+        4611,
+        6049,
+        6354,
+        6401
+      ]
+    },
+    {
+      "id": "skills_leonardssh_9",
+      "user_id": "leonardssh",
+      "type": "skill_based",
+      "query": "experts with Angular and TypeScript and React experience",
+      "skills": [
+        "Angular",
+        "TypeScript",
+        "React"
+      ],
+      "relevant_indices": [
+        157,
+        1445,
+        2309,
+        2751,
+        3353,
+        3891,
+        4611,
+        6049,
+        6354,
+        6401
+      ]
+    },
+    {
+      "id": "skills_rigobcastro_10",
+      "user_id": "rigobcastro",
+      "type": "skill_based",
+      "query": "developers skilled in AWS, GraphQL, React",
+      "skills": [
+        "AWS",
+        "GraphQL",
+        "React"
+      ],
+      "relevant_indices": [
+        200,
+        4280,
+        5708,
+        7711,
+        991,
+        1518,
+        214,
+        125,
+        174,
+        587
+      ]
+    },
+    {
+      "id": "skills_rigobcastro_11",
+      "user_id": "rigobcastro",
+      "type": "skill_based",
+      "query": "experts with AWS and GraphQL and React experience",
+      "skills": [
+        "AWS",
+        "GraphQL",
+        "React"
+      ],
+      "relevant_indices": [
+        200,
+        4280,
+        5708,
+        7711,
+        991,
+        1518,
+        214,
+        125,
+        174,
+        587
+      ]
+    },
+    {
+      "id": "skills_jamesattard_12",
+      "user_id": "jamesattard",
+      "type": "skill_based",
+      "query": "developers skilled in Terraform, C++, Python",
+      "skills": [
+        "Terraform",
+        "C++",
+        "Python",
+        "React"
+      ],
+      "relevant_indices": [
+        202,
+        1692,
+        127,
+        160,
+        313,
+        371,
+        952,
+        1089,
+        1169,
+        1311
+      ]
+    },
+    {
+      "id": "skills_jamesattard_13",
+      "user_id": "jamesattard",
+      "type": "skill_based",
+      "query": "experts with Terraform and C++ and Python experience",
+      "skills": [
+        "Terraform",
+        "C++",
+        "Python",
+        "React"
+      ],
+      "relevant_indices": [
+        202,
+        1692,
+        127,
+        160,
+        313,
+        371,
+        952,
+        1089,
+        1169,
+        1311
+      ]
+    },
+    {
+      "id": "skills_oburasamuel_14",
+      "user_id": "oburasamuel",
+      "type": "skill_based",
+      "query": "developers skilled in AWS, Java, TypeScript",
+      "skills": [
+        "AWS",
+        "Java",
+        "TypeScript",
+        "React",
+        "GraphQL",
+        "JavaScript",
+        "Python",
+        "Django"
+      ],
+      "relevant_indices": [
+        214,
+        6199,
+        2960,
+        508,
+        3453,
+        4041,
+        4513,
+        4581,
+        5656,
+        5714
+      ]
+    },
+    {
+      "id": "skills_oburasamuel_15",
+      "user_id": "oburasamuel",
+      "type": "skill_based",
+      "query": "experts with AWS and Java and TypeScript experience",
+      "skills": [
+        "AWS",
+        "Java",
+        "TypeScript",
+        "React",
+        "GraphQL",
+        "JavaScript",
+        "Python",
+        "Django"
+      ],
+      "relevant_indices": [
+        214,
+        6199,
+        2960,
+        508,
+        3453,
+        4041,
+        4513,
+        4581,
+        5656,
+        5714
+      ]
+    },
+    {
+      "id": "skills_walterrdev_16",
+      "user_id": "walterrdev",
+      "type": "skill_based",
+      "query": "developers skilled in Java, JavaScript, CSS",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        221,
+        4822,
+        7141,
+        4553,
+        5154,
+        6765,
+        7977,
+        8624,
+        9233,
+        143
+      ]
+    },
+    {
+      "id": "skills_walterrdev_17",
+      "user_id": "walterrdev",
+      "type": "skill_based",
+      "query": "experts with Java and JavaScript and CSS experience",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        221,
+        4822,
+        7141,
+        4553,
+        5154,
+        6765,
+        7977,
+        8624,
+        9233,
+        143
+      ]
+    },
+    {
+      "id": "skills_ddmitov_18",
+      "user_id": "ddmitov",
+      "type": "skill_based",
+      "query": "developers skilled in Java, JavaScript, Python",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "Python",
+        "Linux"
+      ],
+      "relevant_indices": [
+        226,
+        4045,
+        625,
+        748,
+        1053,
+        1278,
+        1344,
+        1401,
+        1648,
+        2033
+      ]
+    },
+    {
+      "id": "skills_ddmitov_19",
+      "user_id": "ddmitov",
+      "type": "skill_based",
+      "query": "experts with Java and JavaScript and Python experience",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "Python",
+        "Linux"
+      ],
+      "relevant_indices": [
+        226,
+        4045,
+        625,
+        748,
+        1053,
+        1278,
+        1344,
+        1401,
+        1648,
+        2033
+      ]
+    },
+    {
+      "id": "skills_phani-rajbn_20",
+      "user_id": "phani-rajbn",
+      "type": "skill_based",
+      "query": "developers skilled in C++, JavaScript, Java",
+      "skills": [
+        "C++",
+        "JavaScript",
+        "Java"
+      ],
+      "relevant_indices": [
+        119,
+        306,
+        2827,
+        3757,
+        3885,
+        4845,
+        1091,
+        1138,
+        1283,
+        1288
+      ]
+    },
+    {
+      "id": "skills_phani-rajbn_21",
+      "user_id": "phani-rajbn",
+      "type": "skill_based",
+      "query": "experts with C++ and JavaScript and Java experience",
+      "skills": [
+        "C++",
+        "JavaScript",
+        "Java"
+      ],
+      "relevant_indices": [
+        119,
+        306,
+        2827,
+        3757,
+        3885,
+        4845,
+        1091,
+        1138,
+        1283,
+        1288
+      ]
+    },
+    {
+      "id": "skills_IRONSTONE-A_22",
+      "user_id": "IRONSTONE-A",
+      "type": "skill_based",
+      "query": "developers skilled in HTML, Java, React",
+      "skills": [
+        "HTML",
+        "Java",
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        314,
+        3512,
+        4694,
+        1374,
+        2850,
+        6283,
+        6765,
+        7977,
+        8624,
+        9233
+      ]
+    },
+    {
+      "id": "skills_IRONSTONE-A_23",
+      "user_id": "IRONSTONE-A",
+      "type": "skill_based",
+      "query": "experts with HTML and Java and React experience",
+      "skills": [
+        "HTML",
+        "Java",
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        314,
+        3512,
+        4694,
+        1374,
+        2850,
+        6283,
+        6765,
+        7977,
+        8624,
+        9233
+      ]
+    },
+    {
+      "id": "skills_ddzmitry_24",
+      "user_id": "ddzmitry",
+      "type": "skill_based",
+      "query": "developers skilled in Node.js, Java, React",
+      "skills": [
+        "Node.js",
+        "Java",
+        "React",
+        "Jenkins",
+        "SQL",
+        "Python"
+      ],
+      "relevant_indices": [
+        352,
+        2318,
+        2848,
+        4406,
+        2385,
+        2426,
+        4176,
+        4683,
+        5253,
+        6575
+      ]
+    },
+    {
+      "id": "skills_ddzmitry_25",
+      "user_id": "ddzmitry",
+      "type": "skill_based",
+      "query": "experts with Node.js and Java and React experience",
+      "skills": [
+        "Node.js",
+        "Java",
+        "React",
+        "Jenkins",
+        "SQL",
+        "Python"
+      ],
+      "relevant_indices": [
+        352,
+        2318,
+        2848,
+        4406,
+        2385,
+        2426,
+        4176,
+        4683,
+        5253,
+        6575
+      ]
+    },
+    {
+      "id": "skills_xuan2261_26",
+      "user_id": "xuan2261",
+      "type": "skill_based",
+      "query": "developers skilled in C++, Python, Java",
+      "skills": [
+        "C++",
+        "Python",
+        "Java"
+      ],
+      "relevant_indices": [
+        353,
+        719,
+        1115,
+        1428,
+        2319,
+        2855,
+        3141,
+        3406,
+        3701,
+        4297
+      ]
+    },
+    {
+      "id": "skills_xuan2261_27",
+      "user_id": "xuan2261",
+      "type": "skill_based",
+      "query": "experts with C++ and Python and Java experience",
+      "skills": [
+        "C++",
+        "Python",
+        "Java"
+      ],
+      "relevant_indices": [
+        353,
+        719,
+        1115,
+        1428,
+        2319,
+        2855,
+        3141,
+        3406,
+        3701,
+        4297
+      ]
+    },
+    {
+      "id": "skills_rkhaotix_28",
+      "user_id": "rkhaotix",
+      "type": "skill_based",
+      "query": "developers skilled in C++, SQL, PostgreSQL",
+      "skills": [
+        "C++",
+        "SQL",
+        "PostgreSQL",
+        "Java"
+      ],
+      "relevant_indices": [
+        354,
+        1283,
+        169,
+        509,
+        610,
+        814,
+        823,
+        950,
+        1187,
+        1533
+      ]
+    },
+    {
+      "id": "skills_rkhaotix_29",
+      "user_id": "rkhaotix",
+      "type": "skill_based",
+      "query": "experts with C++ and SQL and PostgreSQL experience",
+      "skills": [
+        "C++",
+        "SQL",
+        "PostgreSQL",
+        "Java"
+      ],
+      "relevant_indices": [
+        354,
+        1283,
+        169,
+        509,
+        610,
+        814,
+        823,
+        950,
+        1187,
+        1533
+      ]
+    },
+    {
+      "id": "skills_simplex06_30",
+      "user_id": "simplex06",
+      "type": "skill_based",
+      "query": "developers skilled in AWS, Azure, SQL",
+      "skills": [
+        "AWS",
+        "Azure",
+        "SQL",
+        "Python",
+        "Linux"
+      ],
+      "relevant_indices": [
+        440,
+        4673,
+        1208,
+        2216,
+        1522,
+        2526,
+        3034,
+        3829,
+        3967,
+        4789
+      ]
+    },
+    {
+      "id": "skills_simplex06_31",
+      "user_id": "simplex06",
+      "type": "skill_based",
+      "query": "experts with AWS and Azure and SQL experience",
+      "skills": [
+        "AWS",
+        "Azure",
+        "SQL",
+        "Python",
+        "Linux"
+      ],
+      "relevant_indices": [
+        440,
+        4673,
+        1208,
+        2216,
+        1522,
+        2526,
+        3034,
+        3829,
+        3967,
+        4789
+      ]
+    },
+    {
+      "id": "skills_AthosFB_32",
+      "user_id": "AthosFB",
+      "type": "skill_based",
+      "query": "developers skilled in HTML, Java, MySQL",
+      "skills": [
+        "HTML",
+        "Java",
+        "MySQL",
+        "SQL",
+        "JavaScript",
+        "Python",
+        "CSS"
+      ],
+      "relevant_indices": [
+        462,
+        7773,
+        2384,
+        3098,
+        781,
+        826,
+        4463,
+        4861,
+        2257,
+        3704
+      ]
+    },
+    {
+      "id": "skills_AthosFB_33",
+      "user_id": "AthosFB",
+      "type": "skill_based",
+      "query": "experts with HTML and Java and MySQL experience",
+      "skills": [
+        "HTML",
+        "Java",
+        "MySQL",
+        "SQL",
+        "JavaScript",
+        "Python",
+        "CSS"
+      ],
+      "relevant_indices": [
+        462,
+        7773,
+        2384,
+        3098,
+        781,
+        826,
+        4463,
+        4861,
+        2257,
+        3704
+      ]
+    },
+    {
+      "id": "skills_Jai-JAP_34",
+      "user_id": "Jai-JAP",
+      "type": "skill_based",
+      "query": "developers skilled in Bash, Python, Linux",
+      "skills": [
+        "Bash",
+        "Python",
+        "Linux"
+      ],
+      "relevant_indices": [
+        465,
+        4789,
+        4940,
+        7568,
+        1344,
+        1534,
+        1998,
+        2275,
+        2671,
+        4180
+      ]
+    },
+    {
+      "id": "skills_Jai-JAP_35",
+      "user_id": "Jai-JAP",
+      "type": "skill_based",
+      "query": "experts with Bash and Python and Linux experience",
+      "skills": [
+        "Bash",
+        "Python",
+        "Linux"
+      ],
+      "relevant_indices": [
+        465,
+        4789,
+        4940,
+        7568,
+        1344,
+        1534,
+        1998,
+        2275,
+        2671,
+        4180
+      ]
+    },
+    {
+      "id": "skills_janis-jenny_36",
+      "user_id": "janis-jenny",
+      "type": "skill_based",
+      "query": "developers skilled in Java, JavaScript, TypeScript",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "React"
+      ],
+      "relevant_indices": [
+        508,
+        4041,
+        4513,
+        4581,
+        5714,
+        11,
+        5870,
+        6199,
+        6545,
+        6929
+      ]
+    },
+    {
+      "id": "skills_janis-jenny_37",
+      "user_id": "janis-jenny",
+      "type": "skill_based",
+      "query": "experts with Java and JavaScript and TypeScript experience",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "React"
+      ],
+      "relevant_indices": [
+        508,
+        4041,
+        4513,
+        4581,
+        5714,
+        11,
+        5870,
+        6199,
+        6545,
+        6929
+      ]
+    },
+    {
+      "id": "skills_dsouzarc_38",
+      "user_id": "dsouzarc",
+      "type": "skill_based",
+      "query": "developers skilled in Java, Python, Kafka",
+      "skills": [
+        "Java",
+        "Python",
+        "Kafka"
+      ],
+      "relevant_indices": [
+        522,
+        252,
+        1736,
+        2544,
+        3220,
+        3746,
+        4101,
+        4819,
+        7268,
+        7479
+      ]
+    },
+    {
+      "id": "skills_dsouzarc_39",
+      "user_id": "dsouzarc",
+      "type": "skill_based",
+      "query": "experts with Java and Python and Kafka experience",
+      "skills": [
+        "Java",
+        "Python",
+        "Kafka"
+      ],
+      "relevant_indices": [
+        522,
+        252,
+        1736,
+        2544,
+        3220,
+        3746,
+        4101,
+        4819,
+        7268,
+        7479
+      ]
+    },
+    {
+      "id": "skills_Pymmdrza_40",
+      "user_id": "Pymmdrza",
+      "type": "skill_based",
+      "query": "developers skilled in PowerShell, Java, TypeScript",
+      "skills": [
+        "PowerShell",
+        "Java",
+        "TypeScript",
+        "C++",
+        "SQL",
+        "JavaScript",
+        "Python"
+      ],
+      "relevant_indices": [
+        546,
+        4105,
+        1091,
+        1138,
+        1283,
+        2102,
+        2731,
+        3257,
+        3331,
+        3453
+      ]
+    },
+    {
+      "id": "skills_Pymmdrza_41",
+      "user_id": "Pymmdrza",
+      "type": "skill_based",
+      "query": "experts with PowerShell and Java and TypeScript experience",
+      "skills": [
+        "PowerShell",
+        "Java",
+        "TypeScript",
+        "C++",
+        "SQL",
+        "JavaScript",
+        "Python"
+      ],
+      "relevant_indices": [
+        546,
+        4105,
+        1091,
+        1138,
+        1283,
+        2102,
+        2731,
+        3257,
+        3331,
+        3453
+      ]
+    },
+    {
+      "id": "skills_DTrombett_42",
+      "user_id": "DTrombett",
+      "type": "skill_based",
+      "query": "developers skilled in HTML, Java, TypeScript",
+      "skills": [
+        "HTML",
+        "Java",
+        "TypeScript",
+        "C++",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        609,
+        1943,
+        2850,
+        5025,
+        1288,
+        3811,
+        4553,
+        5154,
+        6765,
+        7977
+      ]
+    },
+    {
+      "id": "skills_DTrombett_43",
+      "user_id": "DTrombett",
+      "type": "skill_based",
+      "query": "experts with HTML and Java and TypeScript experience",
+      "skills": [
+        "HTML",
+        "Java",
+        "TypeScript",
+        "C++",
+        "JavaScript",
+        "CSS"
+      ],
+      "relevant_indices": [
+        609,
+        1943,
+        2850,
+        5025,
+        1288,
+        3811,
+        4553,
+        5154,
+        6765,
+        7977
+      ]
+    },
+    {
+      "id": "skills_f_44",
+      "user_id": "f",
+      "type": "skill_based",
+      "query": "developers skilled in Java, JavaScript, GitHub",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "GitHub",
+        "Git"
+      ],
+      "relevant_indices": [
+        617,
+        5097,
+        5528,
+        6186,
+        6701,
+        7346,
+        5089,
+        989,
+        6361,
+        77
+      ]
+    },
+    {
+      "id": "skills_f_45",
+      "user_id": "f",
+      "type": "skill_based",
+      "query": "experts with Java and JavaScript and GitHub experience",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "GitHub",
+        "Git"
+      ],
+      "relevant_indices": [
+        617,
+        5097,
+        5528,
+        6186,
+        6701,
+        7346,
+        5089,
+        989,
+        6361,
+        77
+      ]
+    },
+    {
+      "id": "skills_DBozhinovski_46",
+      "user_id": "DBozhinovski",
+      "type": "skill_based",
+      "query": "developers skilled in Java, JavaScript, Linux",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "Linux"
+      ],
+      "relevant_indices": [
+        625,
+        1053,
+        4057,
+        4890,
+        226,
+        143,
+        390,
+        836,
+        1250,
+        1334
+      ]
+    },
+    {
+      "id": "skills_DBozhinovski_47",
+      "user_id": "DBozhinovski",
+      "type": "skill_based",
+      "query": "experts with Java and JavaScript and Linux experience",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "Linux"
+      ],
+      "relevant_indices": [
+        625,
+        1053,
+        4057,
+        4890,
+        226,
+        143,
+        390,
+        836,
+        1250,
+        1334
+      ]
+    },
+    {
+      "id": "skills_dnjoe96_48",
+      "user_id": "dnjoe96",
+      "type": "skill_based",
+      "query": "developers skilled in Java, JavaScript, Bash",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "Bash",
+        "Python"
+      ],
+      "relevant_indices": [
+        690,
+        748,
+        1278,
+        1401,
+        1648,
+        2033,
+        3737,
+        3867,
+        4208,
+        6137
+      ]
+    },
+    {
+      "id": "skills_dnjoe96_49",
+      "user_id": "dnjoe96",
+      "type": "skill_based",
+      "query": "experts with Java and JavaScript and Bash experience",
+      "skills": [
+        "Java",
+        "JavaScript",
+        "Bash",
+        "Python"
+      ],
+      "relevant_indices": [
+        690,
+        748,
+        1278,
+        1401,
+        1648,
+        2033,
+        3737,
+        3867,
+        4208,
+        6137
+      ]
+    }
+  ],
+  "popularity_based": [
+    {
+      "id": "popularity_iDone_0",
+      "user_id": "iDone",
+      "type": "popularity_based",
+      "query": "rising developers with high impact",
+      "popularity_score": 0.3679220085470085,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        4,
+        12,
+        15,
+        19,
+        20,
+        24,
+        25,
+        26,
+        28
+      ]
+    },
+    {
+      "id": "popularity_iDone_1",
+      "user_id": "iDone",
+      "type": "popularity_based",
+      "query": "highly regarded Assembly developers",
+      "popularity_score": 0.3679220085470085,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        4,
+        12,
+        15,
+        19,
+        20,
+        24,
+        25,
+        26,
+        28
+      ]
+    },
+    {
+      "id": "popularity_iDone_2",
+      "user_id": "iDone",
+      "type": "popularity_based",
+      "query": "developers with significant Assembly contributions",
+      "popularity_score": 0.3679220085470085,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        4,
+        12,
+        15,
+        19,
+        20,
+        24,
+        25,
+        26,
+        28
+      ]
+    },
+    {
+      "id": "popularity_Bhavikpatel576_3",
+      "user_id": "Bhavikpatel576",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.06952457264957265,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_Bhavikpatel576_4",
+      "user_id": "Bhavikpatel576",
+      "type": "popularity_based",
+      "query": "highly regarded Ruby developers",
+      "popularity_score": 0.06952457264957265,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_Bhavikpatel576_5",
+      "user_id": "Bhavikpatel576",
+      "type": "popularity_based",
+      "query": "developers with significant Ruby contributions",
+      "popularity_score": 0.06952457264957265,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_C-Anirudh_6",
+      "user_id": "C-Anirudh",
+      "type": "popularity_based",
+      "query": "rising developers with high impact",
+      "popularity_score": 0.21335470085470085,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "popularity_C-Anirudh_7",
+      "user_id": "C-Anirudh",
+      "type": "popularity_based",
+      "query": "highly regarded Python developers",
+      "popularity_score": 0.21335470085470085,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "popularity_C-Anirudh_8",
+      "user_id": "C-Anirudh",
+      "type": "popularity_based",
+      "query": "developers with significant Python contributions",
+      "popularity_score": 0.21335470085470085,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "popularity_eapo_9",
+      "user_id": "eapo",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.06308760683760684,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_eapo_10",
+      "user_id": "eapo",
+      "type": "popularity_based",
+      "query": "highly regarded JavaScript developers",
+      "popularity_score": 0.06308760683760684,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_eapo_11",
+      "user_id": "eapo",
+      "type": "popularity_based",
+      "query": "developers with significant JavaScript contributions",
+      "popularity_score": 0.06308760683760684,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_yzxing87_12",
+      "user_id": "yzxing87",
+      "type": "popularity_based",
+      "query": "established developers with high impact",
+      "popularity_score": 0.4323450854700855,
+      "popularity_level": "established",
+      "relevant_indices": [
+        0,
+        4,
+        15,
+        19,
+        20,
+        24,
+        32,
+        41,
+        42,
+        46
+      ]
+    },
+    {
+      "id": "popularity_yzxing87_13",
+      "user_id": "yzxing87",
+      "type": "popularity_based",
+      "query": "highly regarded Python developers",
+      "popularity_score": 0.4323450854700855,
+      "popularity_level": "established",
+      "relevant_indices": [
+        0,
+        4,
+        15,
+        19,
+        20,
+        24,
+        32,
+        41,
+        42,
+        46
+      ]
+    },
+    {
+      "id": "popularity_yzxing87_14",
+      "user_id": "yzxing87",
+      "type": "popularity_based",
+      "query": "developers with significant Python contributions",
+      "popularity_score": 0.4323450854700855,
+      "popularity_level": "established",
+      "relevant_indices": [
+        0,
+        4,
+        15,
+        19,
+        20,
+        24,
+        32,
+        41,
+        42,
+        46
+      ]
+    },
+    {
+      "id": "popularity_ieferreira_15",
+      "user_id": "ieferreira",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.1627938034188034,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "popularity_ieferreira_16",
+      "user_id": "ieferreira",
+      "type": "popularity_based",
+      "query": "highly regarded Jupyter Notebook developers",
+      "popularity_score": 0.1627938034188034,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "popularity_ieferreira_17",
+      "user_id": "ieferreira",
+      "type": "popularity_based",
+      "query": "developers with significant Jupyter Notebook contributions",
+      "popularity_score": 0.1627938034188034,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "popularity_benjamin-antupit_18",
+      "user_id": "benjamin-antupit",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.014049145299145298,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        9,
+        10,
+        16,
+        18,
+        23,
+        27,
+        30
+      ]
+    },
+    {
+      "id": "popularity_benjamin-antupit_19",
+      "user_id": "benjamin-antupit",
+      "type": "popularity_based",
+      "query": "highly regarded JavaScript developers",
+      "popularity_score": 0.014049145299145298,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        9,
+        10,
+        16,
+        18,
+        23,
+        27,
+        30
+      ]
+    },
+    {
+      "id": "popularity_benjamin-antupit_20",
+      "user_id": "benjamin-antupit",
+      "type": "popularity_based",
+      "query": "developers with significant JavaScript contributions",
+      "popularity_score": 0.014049145299145298,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        9,
+        10,
+        16,
+        18,
+        23,
+        27,
+        30
+      ]
+    },
+    {
+      "id": "popularity_Frank-Dz_21",
+      "user_id": "Frank-Dz",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.19756944444444446,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "popularity_Frank-Dz_22",
+      "user_id": "Frank-Dz",
+      "type": "popularity_based",
+      "query": "highly regarded HTML developers",
+      "popularity_score": 0.19756944444444446,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "popularity_Frank-Dz_23",
+      "user_id": "Frank-Dz",
+      "type": "popularity_based",
+      "query": "developers with significant HTML contributions",
+      "popularity_score": 0.19756944444444446,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "popularity_XuanchenLi_24",
+      "user_id": "XuanchenLi",
+      "type": "popularity_based",
+      "query": "rising developers with high impact",
+      "popularity_score": 0.2643429487179487,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        7,
+        8,
+        12,
+        14,
+        24,
+        25,
+        26,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "popularity_XuanchenLi_25",
+      "user_id": "XuanchenLi",
+      "type": "popularity_based",
+      "query": "highly regarded Python developers",
+      "popularity_score": 0.2643429487179487,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        7,
+        8,
+        12,
+        14,
+        24,
+        25,
+        26,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "popularity_XuanchenLi_26",
+      "user_id": "XuanchenLi",
+      "type": "popularity_based",
+      "query": "developers with significant Python contributions",
+      "popularity_score": 0.2643429487179487,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        7,
+        8,
+        12,
+        14,
+        24,
+        25,
+        26,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "popularity_erikkaincolor_27",
+      "user_id": "erikkaincolor",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.06704059829059829,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_erikkaincolor_28",
+      "user_id": "erikkaincolor",
+      "type": "popularity_based",
+      "query": "highly regarded Python developers",
+      "popularity_score": 0.06704059829059829,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_erikkaincolor_29",
+      "user_id": "erikkaincolor",
+      "type": "popularity_based",
+      "query": "developers with significant Python contributions",
+      "popularity_score": 0.06704059829059829,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_Vinay786-3009_30",
+      "user_id": "Vinay786-3009",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.09057158119658121,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_Vinay786-3009_31",
+      "user_id": "Vinay786-3009",
+      "type": "popularity_based",
+      "query": "highly regarded Java developers",
+      "popularity_score": 0.09057158119658121,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_Vinay786-3009_32",
+      "user_id": "Vinay786-3009",
+      "type": "popularity_based",
+      "query": "developers with significant Java contributions",
+      "popularity_score": 0.09057158119658121,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        5,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "popularity_EbubeEvan_33",
+      "user_id": "EbubeEvan",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.15512820512820513,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "popularity_EbubeEvan_34",
+      "user_id": "EbubeEvan",
+      "type": "popularity_based",
+      "query": "highly regarded TypeScript developers",
+      "popularity_score": 0.15512820512820513,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "popularity_EbubeEvan_35",
+      "user_id": "EbubeEvan",
+      "type": "popularity_based",
+      "query": "developers with significant TypeScript contributions",
+      "popularity_score": 0.15512820512820513,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "popularity_EbubeEvan_36",
+      "user_id": "EbubeEvan",
+      "type": "popularity_based",
+      "query": "emerging developers in Java, CSS",
+      "popularity_score": 0.15512820512820513,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "popularity_ak2consulting_37",
+      "user_id": "ak2consulting",
+      "type": "popularity_based",
+      "query": "rising developers with high impact",
+      "popularity_score": 0.2842948717948718,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        2,
+        7,
+        8,
+        12,
+        14,
+        15,
+        20,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "popularity_ak2consulting_38",
+      "user_id": "ak2consulting",
+      "type": "popularity_based",
+      "query": "highly regarded JavaScript developers",
+      "popularity_score": 0.2842948717948718,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        2,
+        7,
+        8,
+        12,
+        14,
+        15,
+        20,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "popularity_ak2consulting_39",
+      "user_id": "ak2consulting",
+      "type": "popularity_based",
+      "query": "developers with significant JavaScript contributions",
+      "popularity_score": 0.2842948717948718,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        2,
+        7,
+        8,
+        12,
+        14,
+        15,
+        20,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "popularity_Mr-Infect_40",
+      "user_id": "Mr-Infect",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.1141025641025641,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        16
+      ]
+    },
+    {
+      "id": "popularity_Mr-Infect_41",
+      "user_id": "Mr-Infect",
+      "type": "popularity_based",
+      "query": "highly regarded Python developers",
+      "popularity_score": 0.1141025641025641,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        16
+      ]
+    },
+    {
+      "id": "popularity_Mr-Infect_42",
+      "user_id": "Mr-Infect",
+      "type": "popularity_based",
+      "query": "developers with significant Python contributions",
+      "popularity_score": 0.1141025641025641,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        10,
+        11,
+        13,
+        16
+      ]
+    },
+    {
+      "id": "popularity_madmaxoft_43",
+      "user_id": "madmaxoft",
+      "type": "popularity_based",
+      "query": "rising developers with high impact",
+      "popularity_score": 0.23181089743589745,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        14,
+        25,
+        26,
+        29
+      ]
+    },
+    {
+      "id": "popularity_madmaxoft_44",
+      "user_id": "madmaxoft",
+      "type": "popularity_based",
+      "query": "highly regarded C++ developers",
+      "popularity_score": 0.23181089743589745,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        14,
+        25,
+        26,
+        29
+      ]
+    },
+    {
+      "id": "popularity_madmaxoft_45",
+      "user_id": "madmaxoft",
+      "type": "popularity_based",
+      "query": "developers with significant C++ contributions",
+      "popularity_score": 0.23181089743589745,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        2,
+        5,
+        7,
+        8,
+        11,
+        12,
+        14,
+        25,
+        26,
+        29
+      ]
+    },
+    {
+      "id": "popularity_edas_46",
+      "user_id": "edas",
+      "type": "popularity_based",
+      "query": "rising developers with high impact",
+      "popularity_score": 0.36933760683760686,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        4,
+        12,
+        15,
+        19,
+        20,
+        24,
+        25,
+        26,
+        28
+      ]
+    },
+    {
+      "id": "popularity_edas_47",
+      "user_id": "edas",
+      "type": "popularity_based",
+      "query": "highly regarded Python developers",
+      "popularity_score": 0.36933760683760686,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        4,
+        12,
+        15,
+        19,
+        20,
+        24,
+        25,
+        26,
+        28
+      ]
+    },
+    {
+      "id": "popularity_edas_48",
+      "user_id": "edas",
+      "type": "popularity_based",
+      "query": "developers with significant Python contributions",
+      "popularity_score": 0.36933760683760686,
+      "popularity_level": "rising",
+      "relevant_indices": [
+        0,
+        4,
+        12,
+        15,
+        19,
+        20,
+        24,
+        25,
+        26,
+        28
+      ]
+    },
+    {
+      "id": "popularity_RyderBlack_49",
+      "user_id": "RyderBlack",
+      "type": "popularity_based",
+      "query": "emerging developers with high impact",
+      "popularity_score": 0.06119123931623932,
+      "popularity_level": "emerging",
+      "relevant_indices": [
+        1,
+        3,
+        6,
+        9,
+        10,
+        11,
+        13,
+        16,
+        18,
+        21
+      ]
+    }
+  ]
+}

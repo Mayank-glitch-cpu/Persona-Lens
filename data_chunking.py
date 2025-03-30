@@ -6,6 +6,8 @@ from sklearn.decomposition import PCA
 import json
 import ast
 from pathlib import Path
+from typing import Dict, Any
+from collections import Counter
 
 def load_dataset():
     file_path = Path('Dataset/dataset_with_extracted_features.csv')
@@ -47,56 +49,268 @@ def analyze_user_data(df):
     
     return user_profiles
 
+def create_language_based_chunks(df: pd.DataFrame) -> Dict[str, Any]:
+    """Create chunks based on primary programming language"""
+    chunks = {}
+    
+    for _, row in df.iterrows():
+        if not isinstance(row['language_stats_parsed'], list):
+            continue
+            
+        # Convert language stats to dict
+        lang_dict = {item['language']: item['percentage'] 
+                    for item in row['language_stats_parsed'] 
+                    if isinstance(item, dict) and 'language' in item}
+        
+        if not lang_dict:
+            continue
+            
+        # Get primary language
+        primary_lang = max(lang_dict.items(), key=lambda x: x[1])[0].lower()
+        chunk_name = f"language_based_{primary_lang}"
+        
+        if chunk_name not in chunks:
+            chunks[chunk_name] = {
+                'users': [],
+                'user_indices': [],
+                'skills': set(),
+                'experience_years': [],
+                'popularity_scores': []
+            }
+            
+        chunks[chunk_name]['users'].append(row['username'])
+        chunks[chunk_name]['user_indices'].append(row.name)  # Add index
+        if isinstance(row['skills'], list):
+            chunks[chunk_name]['skills'].update(row['skills'])
+        chunks[chunk_name]['experience_years'].append(row['experience_years'])
+        chunks[chunk_name]['popularity_scores'].append(row['popularity_score'])
+    
+    # Convert sets to lists and calculate averages
+    processed_chunks = {}
+    for name, data in chunks.items():
+        if len(data['users']) >= 5:  # Only keep chunks with enough users
+            processed_chunks[name] = {
+                'size': len(data['users']),
+                'user_indices': data['user_indices'],  # Include indices
+                'sample_users': data['users'][:5],
+                'most_common_skills': Counter(list(data['skills'])).most_common(10),
+                'avg_experience': np.mean(data['experience_years']),
+                'avg_popularity': np.mean(data['popularity_scores'])
+            }
+    
+    return processed_chunks
+
+def create_skill_based_chunks(df: pd.DataFrame) -> Dict[str, Any]:
+    """Create chunks based on skill sets"""
+    chunks = {}
+    
+    for _, row in df.iterrows():
+        if not isinstance(row['skills'], list):
+            continue
+            
+        for skill in row['skills']:
+            skill_lower = skill.lower()
+            if skill_lower not in chunks:
+                chunks[skill_lower] = {
+                    'users': [],
+                    'user_indices': [],
+                    'languages': set(),
+                    'experience_years': [],
+                    'popularity_scores': []
+                }
+                
+            chunks[skill_lower]['users'].append(row['username'])
+            chunks[skill_lower]['user_indices'].append(row.name)  # Add index
+            if isinstance(row['language_stats_parsed'], list):
+                chunks[skill_lower]['languages'].update(
+                    item['language'] for item in row['language_stats_parsed']
+                    if isinstance(item, dict) and 'language' in item
+                )
+            chunks[skill_lower]['experience_years'].append(row['experience_years'])
+            chunks[skill_lower]['popularity_scores'].append(row['popularity_score'])
+    
+    # Process chunks
+    processed_chunks = {}
+    for skill, data in chunks.items():
+        if len(data['users']) >= 5:  # Only keep chunks with enough users
+            chunk_name = f"skill_based_{skill}"
+            processed_chunks[chunk_name] = {
+                'size': len(data['users']),
+                'user_indices': data['user_indices'],  # Include indices
+                'sample_users': data['users'][:5],
+                'most_used_languages': Counter(list(data['languages'])).most_common(5),
+                'avg_experience': np.mean(data['experience_years']),
+                'avg_popularity': np.mean(data['popularity_scores'])
+            }
+    
+    return processed_chunks
+
+def create_experience_based_chunks(df: pd.DataFrame) -> Dict[str, Any]:
+    """Create chunks based on experience levels"""
+    exp_ranges = [
+        (0, 2, 'entry_level'),
+        (2, 5, 'junior'),
+        (5, 8, 'mid_level'),
+        (8, 12, 'senior'),
+        (12, float('inf'), 'expert')
+    ]
+    
+    chunks = {level: {
+        'users': [],
+        'user_indices': [],
+        'skills': set(),
+        'languages': set(),
+        'popularity_scores': []
+    } for _, _, level in exp_ranges}
+    
+    for _, row in df.iterrows():
+        exp_years = row['experience_years']
+        for min_exp, max_exp, level in exp_ranges:
+            if min_exp <= exp_years < max_exp:
+                chunks[level]['users'].append(row['username'])
+                chunks[level]['user_indices'].append(row.name)  # Add index
+                if isinstance(row['skills'], list):
+                    chunks[level]['skills'].update(row['skills'])
+                if isinstance(row['language_stats_parsed'], list):
+                    chunks[level]['languages'].update(
+                        item['language'] for item in row['language_stats_parsed']
+                        if isinstance(item, dict) and 'language' in item
+                    )
+                chunks[level]['popularity_scores'].append(row['popularity_score'])
+                break
+    
+    # Process chunks
+    processed_chunks = {}
+    for level, data in chunks.items():
+        if len(data['users']) >= 5:
+            chunk_name = f"experience_{level}"
+            processed_chunks[chunk_name] = {
+                'size': len(data['users']),
+                'user_indices': data['user_indices'],  # Include indices
+                'sample_users': data['users'][:5],
+                'most_common_skills': Counter(list(data['skills'])).most_common(10),
+                'most_used_languages': Counter(list(data['languages'])).most_common(5),
+                'avg_popularity': np.mean(data['popularity_scores'])
+            }
+    
+    return processed_chunks
+
+def create_popularity_based_chunks(df: pd.DataFrame) -> Dict[str, Any]:
+    """Create chunks based on user popularity"""
+    pop_ranges = [
+        (0, 0.2, 'emerging'),
+        (0.2, 0.4, 'established'),
+        (0.4, 0.6, 'notable'),
+        (0.6, 0.8, 'prominent'),
+        (0.8, float('inf'), 'outstanding')
+    ]
+    
+    chunks = {level: {
+        'users': [],
+        'user_indices': [],
+        'skills': set(),
+        'languages': set(),
+        'experience_years': []
+    } for _, _, level in pop_ranges}
+    
+    # Normalize popularity scores
+    max_pop = df['popularity_score'].max()
+    
+    for _, row in df.iterrows():
+        norm_pop = row['popularity_score'] / max_pop
+        for min_pop, max_pop, level in pop_ranges:
+            if min_pop <= norm_pop < max_pop:
+                chunks[level]['users'].append(row['username'])
+                chunks[level]['user_indices'].append(row.name)  # Add index
+                if isinstance(row['skills'], list):
+                    chunks[level]['skills'].update(row['skills'])
+                if isinstance(row['language_stats_parsed'], list):
+                    chunks[level]['languages'].update(
+                        item['language'] for item in row['language_stats_parsed']
+                        if isinstance(item, dict) and 'language' in item
+                    )
+                chunks[level]['experience_years'].append(row['experience_years'])
+                break
+    
+    # Process chunks
+    processed_chunks = {}
+    for level, data in chunks.items():
+        if len(data['users']) >= 5:
+            chunk_name = f"popularity_{level}"
+            processed_chunks[chunk_name] = {
+                'size': len(data['users']),
+                'user_indices': data['user_indices'],  # Include indices
+                'sample_users': data['users'][:5],
+                'most_common_skills': Counter(list(data['skills'])).most_common(10),
+                'most_used_languages': Counter(list(data['languages'])).most_common(5),
+                'avg_experience': np.mean(data['experience_years'])
+            }
+    
+    return processed_chunks
+
 def create_user_chunks(user_profiles, n_chunks=5):
     """Create semantic chunks of users based on their profiles"""
     chunks = {}
     
-    # Group users by experience level
+    # Group users by experience level with more granular ranges
     exp_ranges = [
-        (0, 5, 'junior'),
-        (5, 10, 'mid_level'),
-        (10, 15, 'senior'),
-        (15, float('inf'), 'expert')
+        (0, 2, 'entry_level'),
+        (2, 5, 'junior'),
+        (5, 8, 'mid_level'),
+        (8, 12, 'senior'),
+        (12, float('inf'), 'expert')
     ]
     
     for min_exp, max_exp, level in exp_ranges:
-        chunks[f'experience_{level}'] = [
+        chunk_users = [
             profile for profile in user_profiles 
             if min_exp <= profile['experience_years'] < max_exp
         ]
+        if chunk_users:
+            chunks[f'experience_{level}'] = chunk_users
     
-    # Group users by primary language
-    language_chunks = {}
+    # Group users by primary language - flattened structure
     for profile in user_profiles:
         if profile['primary_language']:
-            if profile['primary_language'] not in language_chunks:
-                language_chunks[profile['primary_language']] = []
-            language_chunks[profile['primary_language']].append(profile)
+            chunk_name = f"language_based_{profile['primary_language'].lower()}"
+            if chunk_name not in chunks:
+                chunks[chunk_name] = []
+            chunks[chunk_name].append(profile)
     
-    # Keep only the top 10 language groups by size
-    top_languages = sorted(
-        language_chunks.items(),
-        key=lambda x: len(x[1]),
-        reverse=True
-    )[:10]
+    # Keep only language groups with enough users
+    chunks = {k: v for k, v in chunks.items() if not k.startswith('language_based_') or len(v) >= 5}
     
-    chunks['language_based'] = {
-        lang: users for lang, users in top_languages
-    }
-    
-    # Group users by popularity score ranges
+    # Group users by popularity score with more granular ranges
     popularity_ranges = [
-        (0, 4, 'low'),
-        (4, 7, 'medium'),
-        (7, 9, 'high'),
-        (9, float('inf'), 'very_high')
+        (0, 3, 'emerging'),
+        (3, 6, 'established'),
+        (6, 8, 'notable'),
+        (8, 9, 'prominent'),
+        (9, float('inf'), 'outstanding')
     ]
     
     for min_pop, max_pop, level in popularity_ranges:
-        chunks[f'popularity_{level}'] = [
+        chunk_users = [
             profile for profile in user_profiles 
             if min_pop <= profile['popularity_score'] < max_pop
         ]
+        if chunk_users:
+            chunks[f'popularity_{level}'] = chunk_users
+    
+    # Add skill-based chunks
+    skill_chunks = {}
+    for profile in user_profiles:
+        for skill in profile['skills']:
+            if skill not in skill_chunks:
+                skill_chunks[skill] = []
+            skill_chunks[skill].append(profile)
+    
+    # Keep only skill groups with enough users and significant activity
+    for skill, users in skill_chunks.items():
+        if len(users) >= 5:  # Minimum 5 users per skill
+            avg_popularity = sum(u['popularity_score'] for u in users) / len(users)
+            if avg_popularity >= 3:  # Only include skills with decent activity
+                chunks[f'skill_based_{skill.lower()}'] = users
     
     return chunks
 
@@ -238,11 +452,27 @@ def main():
     # Create user-based chunks
     user_based_chunks = create_user_chunks(user_profiles)
     
+    # Create language-based chunks
+    language_chunks = create_language_based_chunks(df)
+    
+    # Create skill-based chunks
+    skill_chunks = create_skill_based_chunks(df)
+    
+    # Create experience-based chunks
+    experience_chunks = create_experience_based_chunks(df)
+    
+    # Create popularity-based chunks
+    popularity_chunks = create_popularity_based_chunks(df)
+    
     # Save the results
     results = {
         'user_clusters': user_clusters,
         'feature_groups': feature_chunks,
-        'user_chunks': user_based_chunks
+        'user_chunks': user_based_chunks,
+        'language_chunks': language_chunks,
+        'skill_chunks': skill_chunks,
+        'experience_chunks': experience_chunks,
+        'popularity_chunks': popularity_chunks
     }
     
     # Save to JSON file

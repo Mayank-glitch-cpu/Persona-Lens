@@ -8,7 +8,7 @@ from datetime import datetime
 import seaborn as sns
 
 # Load the dataset
-file_path = '/home/maya/persona-lens/Persona-Lens/Dataset/github_users_combined.csv'  # Replace with the actual path to your dataset
+file_path = '/home/maya/persona-lens/Persona-Lens/Dataset/final_combined.csv'  # Replace with the actual path to your dataset
 data = pd.read_csv(file_path)
 
 # Get the column names
@@ -23,7 +23,7 @@ num_rows, num_columns = data.shape
 # print("Number of Columns:", num_columns)
 
 # Load the new dataset
-file_path = '/home/maya/persona-lens/Persona-Lens/Dataset/github_users_combined.csv'  # Replace with the actual path to your dataset
+# file_path = '/home/maya/persona-lens/Persona-Lens/Dataset/github_users_combined'  # Replace with the actual path to your dataset
 data = pd.read_csv(file_path)
 
 # 1. Define the Columns to Keep

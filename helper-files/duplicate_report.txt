@@ -1,0 +1,4 @@
+Total rows in original combined data: 4334
+Exact duplicates removed: 0
+Total rows after exact deduplication: 4334
+

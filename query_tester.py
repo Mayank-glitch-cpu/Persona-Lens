@@ -10,7 +10,8 @@ class QueryTester:
         self.embedder = ChunkEmbedder()
         # Load the existing index and mapping
         self.embedder.load()
-        
+        self.dimension = 384  # Update to match the actual model dimension
+
         # Load the semantic chunks for reference
         with open('semantic_chunks.json', 'r') as f:
             self.semantic_chunks = json.load(f)
